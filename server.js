@@ -1,0 +1,467 @@
+const express = require("express");
+const pptxgen = require("pptxgenjs");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+
+// =============================================
+// BANCO DE LETRAS — DOMINGO DE PENTECOSTES
+// =============================================
+
+const banco = {
+  "O Espírito do Senhor": {
+    autor: "Reginaldo Veloso",
+    momento: "Canto de Entrada",
+    secoes: [
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "1. Levanta-se Deus, cadê os inimigos?\nNa sua presença perecem os iníquos!\nSão como fumaça que desaparece,\nsão cera no fogo, que logo derrete!" },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "2. Os justos se alegram diante de Deus,\ncantai ao Senhor, vibrai, filhos seus!\nAbri o caminho ao grão cavaleiro,\ndançai diante dele, Senhor justiceiro." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "3. Dos órfãos é Pai, das viúvas juiz,\nem sua morada só Ele é quem diz:\nquem estava sozinho, família encontrou,\nquem estava oprimido, tua mão libertou!" },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "4. À frente do povo saíste, ó Deus,\nos céus gotejaram, a terra tremeu;\nna sua presença se abala o Sinai,\né Deus que avança, que avança e vai!" },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "5. Uma chuva abundante do céu derramaste\ne a tua herança exausta saciaste;\nfizeste em tua paz viver teu rebanho\ne os necessitados tiveram seu ganho." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "6. Falou sua palavra, saem os portadores,\ndebandam os reis e fartam-se os pobres!\nImenso é o poder de nosso Senhor,\nsubindo às alturas, cativos levou." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "7. Bendito tu sejas, Senhor, todo dia,\nTu és quem nos salva, quem nos alivia;\nÉs tu nosso Deus, o libertador!\nQuem livra da morte, só mesmo o Senhor!" },
+      { tipo: "Refrão", texto: "O Espírito do Senhor\no universo todo encheu,\ntudo abarca em seu saber.\nTudo enlaça em seu amor.\nAleluia, aleluia! Aleluia, aleluia! (Bis)" },
+    ]
+  },
+  "Estaremos Aqui Reunidos": {
+    autor: "Pe. Zezinho",
+    momento: "Canto de Entrada",
+    secoes: [
+      { tipo: "Refrão", texto: "Estaremos aqui reunidos,\ncomo estavam em Jerusalém,\npois só quando vivemos unidos,\né que o Espírito Santo nos vem." },
+      { tipo: "Estrofe", texto: "1. Ninguém para esse vento passando,\nninguém vê, e ele sopra onde quer.\nForça igual têm o Espírito quando\nfaz a Igreja de Cristo crescer." },
+      { tipo: "Refrão", texto: "Estaremos aqui reunidos,\ncomo estavam em Jerusalém,\npois só quando vivemos unidos,\né que o Espírito Santo nos vem." },
+      { tipo: "Estrofe", texto: "2. Feita de homens a Igreja é divina,\npois o Espírito Santo a conduz,\ncomo um fogo que aquece e ilumina,\nque é pureza, que é vida, que é luz." },
+      { tipo: "Refrão", texto: "Estaremos aqui reunidos,\ncomo estavam em Jerusalém,\npois só quando vivemos unidos,\né que o Espírito Santo nos vem." },
+      { tipo: "Estrofe", texto: "3. Sua imagem são línguas ardentes,\npois o Amor é comunicação.\nE é preciso que todas as gentes\nsaibam quanto felizes serão." },
+      { tipo: "Refrão", texto: "Estaremos aqui reunidos,\ncomo estavam em Jerusalém,\npois só quando vivemos unidos,\né que o Espírito Santo nos vem." },
+      { tipo: "Estrofe", texto: "4. Quando o Espírito espalma suas graças,\nfaz dos povos um só coração.\nCresce a Igreja onde todas as raças\num só Deus, um só Pai louvarão." },
+      { tipo: "Refrão", texto: "Estaremos aqui reunidos,\ncomo estavam em Jerusalém,\npois só quando vivemos unidos,\né que o Espírito Santo nos vem." },
+    ]
+  },
+  "Vinde, Espírito de Deus": {
+    autor: "Frei Fabretti",
+    momento: "Canto de Entrada",
+    secoes: [
+      { tipo: "Refrão", texto: "E cantaremos aleluia!\nE a nossa terra renovada ficará,\nse o vosso Espírito, Senhor, nos enviais. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Vinde Espírito de Deus,\ne enchei os corações dos fiéis com vossos dons!\nAcendei neles o amor\ncom um fogo abrasador,\nvos pedimos, ó Senhor!" },
+      { tipo: "Refrão", texto: "E cantaremos aleluia!\nE a nossa terra renovada ficará,\nse o vosso Espírito, Senhor, nos enviais. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Vós que unistes tantas gentes,\ntantas línguas diferentes\nnuma fé na unidade;\npra buscar sempre a verdade\ne servir o vosso Reino\ncom a mesma caridade." },
+      { tipo: "Refrão", texto: "E cantaremos aleluia!\nE a nossa terra renovada ficará,\nse o vosso Espírito, Senhor, nos enviais. (Bis)" },
+    ]
+  },
+  "O Espírito do Senhor Encheu o Universo": {
+    autor: "Frei Wanderson",
+    momento: "Canto de Entrada",
+    secoes: [
+      { tipo: "Refrão", texto: "O Espírito do Senhor encheu o universo;\nele mantém unidas todas as coisas\ne conhece todas as línguas. Aleluia." },
+      { tipo: "Estrofe", texto: "1. Eis que Deus se põe de pé\ne os inimigos se dispersam!\nFogem longe de sua face\nos que odeiam o Senhor." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor encheu o universo;\nele mantém unidas todas as coisas\ne conhece todas as línguas. Aleluia." },
+      { tipo: "Estrofe", texto: "2. Mas os justos se alegram\nna presença do Senhor,\nrejubilam satisfeitos\ne exultam de alegria." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor encheu o universo;\nele mantém unidas todas as coisas\ne conhece todas as línguas. Aleluia." },
+      { tipo: "Estrofe", texto: "3. Derramastes lá do alto\numa chuva generosa,\ne vossa terra, vossa herança,\njá cansada renovastes." },
+      { tipo: "Refrão", texto: "O Espírito do Senhor encheu o universo;\nele mantém unidas todas as coisas\ne conhece todas as línguas. Aleluia." },
+    ]
+  },
+  "Enviai o Vosso Espírito, Senhor": {
+    autor: "Eliana Ribeiro",
+    momento: "Canto de Entrada",
+    secoes: [
+      { tipo: "Refrão", texto: "A Deus clamaremos:\nEnviai Teu Santo Espírito, Senhor,\ne renovai a face da Terra. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Vem, Espírito de amor,\nreacender a chama que se apagou,\nreinflamar os corações com línguas de fogo." },
+      { tipo: "Refrão", texto: "A Deus clamaremos:\nEnviai Teu Santo Espírito, Senhor,\ne renovai a face da Terra. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Vem, Espírito de amor,\nrecriar o que o mundo destruiu,\nreavivar em nós o primeiro amor,\ncomo em Pentecostes, vem viver em nós,\nnos unindo à criação." },
+      { tipo: "Refrão", texto: "A Deus clamaremos:\nEnviai Teu Santo Espírito, Senhor,\ne renovai a face da Terra. (Bis)" },
+    ]
+  },
+  "Banhados em Cristo": {
+    autor: "",
+    momento: "Aspersão",
+    secoes: [
+      { tipo: "Refrão", texto: "Banhados em Cristo,\nsomos uma nova criatura.\nAs coisas antigas já se passaram,\nsomos nascidos de novo.\nAleluia, aleluia, aleluia!" },
+      { tipo: "Estrofe", texto: "1. Lavados na fonte viva\ndo lado aberto de Cristo,\ntranspomos vitoriosos\nas portas do paraíso!" },
+      { tipo: "Refrão", texto: "Banhados em Cristo,\nsomos uma nova criatura.\nAs coisas antigas já se passaram,\nsomos nascidos de novo.\nAleluia, aleluia, aleluia!" },
+    ]
+  },
+  "Derramarei Sobre Vós": {
+    autor: "",
+    momento: "Aspersão",
+    secoes: [
+      { tipo: "Refrão", texto: "Derramarei sobre vós uma água pura,\nsereis purificados de todas as faltas,\neu vos darei um coração novo, diz o Senhor." },
+      { tipo: "Estrofe", texto: "1. Tende piedade de mim, ó Deus,\nsegundo a vossa grande misericórdia,\npor vossa bondade imensa,\napagai minha iniquidade." },
+      { tipo: "Refrão", texto: "Derramarei sobre vós uma água pura,\nsereis purificados de todas as faltas,\neu vos darei um coração novo, diz o Senhor." },
+      { tipo: "Estrofe", texto: "2. Lavai-me todo inteiro de minha culpa\ne do meu pecado purificai-me,\nsim, reconheço minha maldade,\nà minha frente está sempre o meu pecado." },
+      { tipo: "Refrão", texto: "Derramarei sobre vós uma água pura,\nsereis purificados de todas as faltas,\neu vos darei um coração novo, diz o Senhor." },
+      { tipo: "Estrofe", texto: "3. Dos meus pecados desviai a vossa face\ne todas as minhas culpas apagai,\ncriai em mim um coração que seja puro, meu Deus,\nponde em mim um espírito resoluto." },
+      { tipo: "Refrão", texto: "Derramarei sobre vós uma água pura,\nsereis purificados de todas as faltas,\neu vos darei um coração novo, diz o Senhor." },
+    ]
+  },
+  "Ó Luz do Senhor": {
+    autor: "",
+    momento: "Acender a Vela",
+    secoes: [
+      { tipo: "Única", texto: "Ó luz do Senhor\nque vem sobre a terra,\ninunda meu ser,\npermanece em nós." },
+    ]
+  },
+  "A Luz Virá": {
+    autor: "",
+    momento: "Acender a Vela",
+    secoes: [
+      { tipo: "Única", texto: "A luz virá, a luz virá,\ne resplandecerá um novo dia. (Bis)" },
+    ]
+  },
+  "Senhor, que Subindo ao Céu": {
+    autor: "",
+    momento: "Ato Penitencial",
+    secoes: [
+      { tipo: "Estrofe", texto: "Senhor, que subindo ao céu\nnos presenteastes com o dom do Espírito,\ntende piedade de nós.\nKyrie eleison! Kyrie eleison! (Bis)" },
+      { tipo: "Estrofe", texto: "Cristo, que dais vida a todas as coisas\ncom o poder da vossa palavra,\ntende piedade de nós.\nChriste eleison! Christe eleison! (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor, Rei do universo e Senhor dos séculos,\ntende piedade de nós.\nKyrie eleison! Kyrie eleison! (Bis)" },
+    ]
+  },
+  "Sacerdote da Nova Aliança": {
+    autor: "",
+    momento: "Ato Penitencial",
+    secoes: [
+      { tipo: "Estrofe", texto: "Senhor, que sois o eterno sacerdote\nda nova Aliança,\ntende piedade de nós.\nSenhor, tende piedade de nós. (Bis)" },
+      { tipo: "Estrofe", texto: "Cristo, que nos edificais como pedras vivas\nno templo santo de Deus,\ntende piedade de nós.\nCristo, tende piedade de nós. (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor, que nos tornais concidadãos dos santos\nno reino dos céus,\ntende piedade de nós.\nSenhor, tende piedade de nós. (Bis)" },
+    ]
+  },
+  "Senhor, Senhor, Tende Piedade de Nós": {
+    autor: "",
+    momento: "Ato Penitencial",
+    secoes: [
+      { tipo: "Estrofe", texto: "Senhor, nossa paz,\ntende piedade de nós.\nSenhor, Senhor, tende piedade de nós. (Bis)" },
+      { tipo: "Estrofe", texto: "Cristo, nossa Páscoa,\ntende piedade de nós.\nCristo, Cristo, tende piedade de nós. (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor, nossa vida,\ntende piedade de nós.\nSenhor, Senhor, tende piedade de nós. (Bis)" },
+    ]
+  },
+  "Glória (Vinde Cristãos)": {
+    autor: "",
+    momento: "Glória",
+    secoes: [
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "1. Glória a Deus nos altos céus,\npaz na terra aos seus amados.\nA vós louvam, Rei celeste,\nos que foram libertados." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "2. Deus e Pai nós vos louvamos,\nadoramos, bendizemos.\nDamos glória ao vosso nome,\nvossos dons agradecemos." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "3. Senhor nosso Jesus Cristo,\nunigênito do Pai.\nVós de Deus Cordeiro Santo,\nnossas culpas perdoai." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "4. Vós que estais junto do Pai,\ncomo nosso intercessor.\nAcolhei nossos pedidos,\natendei nosso clamor." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "5. Vós somente sois o Santo,\no Altíssimo, o Senhor,\ncom o Espírito Divino,\nde Deus Pai no esplendor." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+    ]
+  },
+  "Glória Shalom": {
+    autor: "",
+    momento: "Glória",
+    secoes: [
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Senhor Deus, Rei dos céus, Deus Pai onipotente,\nvos louvamos, bendizemos, adoramos.\nNós vos glorificamos\ne nós vos damos graças por vossa imensa glória." },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Jesus Cristo, Senhor Deus, Filho único do Pai,\nCordeiro de Deus que tirais o pecado do mundo,\ntende piedade.\nVós que estais à direita do Pai, tende piedade.\nVós que tirais o pecado do mundo,\nacolhei a nossa súplica." },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "3. Só vós sois o Santo, o Senhor,\no Altíssimo, só vós,\nJesus Cristo, com o Espírito e o Pai." },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
+    ]
+  },
+  "Aleluia (1)": {
+    autor: "",
+    momento: "Aclamação",
+    secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "Vinde Espírito Divino,\ne enchei com vossos dons\nos corações dos fiéis,\ne acendei neles o amor,\ncomo um fogo abrasador." },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (Bis)" },
+    ]
+  },
+  "Aleluia (2)": {
+    autor: "",
+    momento: "Aclamação",
+    secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! Aleluia! (Bis)" },
+      { tipo: "Estrofe", texto: "Vinde Espírito Divino,\ne enchei com vossos dons\nos corações dos fiéis,\ne acendei neles o amor,\ncomo um fogo abrasador." },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! Aleluia! (Bis)" },
+    ]
+  },
+  "Sequência de Pentecostes": {
+    autor: "",
+    momento: "Sequência",
+    secoes: [
+      { tipo: "Estrofe", texto: "1. Espírito de Deus, enviai dos céus\num raio de luz, um raio de luz.\nVinde, Pai dos pobres, dai aos corações\nvossos sete dons, vossos sete dons." },
+      { tipo: "Estrofe", texto: "2. Consolo que acalma, hóspede da alma,\ndoce alívio, vinde, doce alívio, vinde.\nNo labor, descanso, na aflição, remanso,\nno calor, aragem, no calor, aragem." },
+      { tipo: "Estrofe", texto: "3. Ao sujo, lavai, ao seco, regai,\ncurai o doente, curai o doente.\nDobrai o que é duro, guiai no escuro,\no frio, aquecei, o frio, aquecei." },
+      { tipo: "Estrofe", texto: "4. Enchei, luz bendita, chama que crepita,\no íntimo de nós, o íntimo de nós.\nSem a luz que acode, nada o homem pode,\nnenhum bem há nele, nenhum bem há nele." },
+      { tipo: "Estrofe", texto: "5. Dai à Vossa Igreja, que espera e deseja,\nvossos sete dons, vossos sete dons.\nDai em prêmio ao forte uma santa morte,\nalegria eterna, alegria eterna. Amém!" },
+    ]
+  },
+  "Espírito Criador!": {
+    autor: "Pe. Zezinho",
+    momento: "Ofertório",
+    secoes: [
+      { tipo: "Refrão", texto: "Espírito criador!\nBendito sempre sejais!\nPor tudo isso, e bem mais,\npelo imenso dom do amor." },
+      { tipo: "Estrofe", texto: "1. Com o Pai fazeis fecundo\no solo imenso do mundo\npra nos dar trigo e flor.\nBendito sois noite e dia\npor tão grande doação,\nfonte sem fim de alegria,\nsão matérias pro nosso pão." },
+      { tipo: "Refrão", texto: "Espírito criador!\nBendito sempre sejais!\nPor tudo isso, e bem mais,\npelo imenso dom do amor." },
+      { tipo: "Estrofe", texto: "2. Foi dom de vossa bondade\nenchernos de habilidade\npro trabalho, Senhor.\nCom o Pai vós sois bendito\nporque dais à nossa mão,\ncom poder que é quase infinito,\ncontinuar a criação." },
+      { tipo: "Refrão", texto: "Espírito criador!\nBendito sempre sejais!\nPor tudo isso, e bem mais,\npelo imenso dom do amor." },
+    ]
+  },
+  "Pão e Vinho, Pai, Poremos": {
+    autor: "Pe. Zezinho",
+    momento: "Ofertório",
+    secoes: [
+      { tipo: "Refrão", texto: "Pão e vinho, Pai, poremos,\nnesta mesa, uma vez mais.\nÉ um pouco do que temos\npelo muito que nos dais." },
+      { tipo: "Estrofe", texto: "1. Vós nos dais Jesus, o Cristo,\nmas o Cristo, o que nos faz?\nVem morrer crucificado,\npara vir ressuscitado,\ne nos dar a sua paz." },
+      { tipo: "Refrão", texto: "Pão e vinho, Pai, poremos,\nnesta mesa, uma vez mais.\nÉ um pouco do que temos\npelo muito que nos dais." },
+      { tipo: "Estrofe", texto: "2. Vós nos dais o vosso Filho\npara ser o nosso irmão.\nE pra termos de verdade,\nsó amor, fraternidade,\nEle nos deu o perdão." },
+      { tipo: "Refrão", texto: "Pão e vinho, Pai, poremos,\nnesta mesa, uma vez mais.\nÉ um pouco do que temos\npelo muito que nos dais." },
+    ]
+  },
+  "As Sementes que Me Deste": {
+    autor: "",
+    momento: "Ofertório",
+    secoes: [
+      { tipo: "Refrão", texto: "Dos meus dons que recebi\npelo Espírito do amor,\ntrago os frutos que colhi\ne em Tua mesa quero pôr. (Bis)" },
+      { tipo: "Estrofe", texto: "1. As sementes que me deste\ne que não eram pra guardar,\npus no chão da minha vida,\nquis fazer frutificar." },
+      { tipo: "Refrão", texto: "Dos meus dons que recebi\npelo Espírito do amor,\ntrago os frutos que colhi\ne em Tua mesa quero pôr. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Pelos campos deste mundo\nquero sempre semear,\nos talentos que me deste\npara eu mesmo cultivar." },
+      { tipo: "Refrão", texto: "Dos meus dons que recebi\npelo Espírito do amor,\ntrago os frutos que colhi\ne em Tua mesa quero pôr. (Bis)" },
+    ]
+  },
+  "As Nossas Ofertas de Vinho e de Pão": {
+    autor: "",
+    momento: "Ofertório",
+    secoes: [
+      { tipo: "Refrão", texto: "As nossas ofertas de vinho e de pão\ncelebram a glória da ressurreição,\na glória da ressurreição." },
+      { tipo: "Estrofe", texto: "1. O grão que morrera no seio do chão\nrenasce no trigo tornando-se pão.\nA uva amassada, pisada, moída,\nressurge no vinho, sustento da vida." },
+      { tipo: "Refrão", texto: "As nossas ofertas de vinho e de pão\ncelebram a glória da ressurreição,\na glória da ressurreição." },
+      { tipo: "Estrofe", texto: "2. O pão e o vinho são hoje memória\ndo novo cordeiro na sua vitória.\nSinais da aliança da terra e dos céus\nno corpo e no sangue do Filho de Deus." },
+      { tipo: "Refrão", texto: "As nossas ofertas de vinho e de pão\ncelebram a glória da ressurreição,\na glória da ressurreição." },
+    ]
+  },
+  "Cristo é o Dom do Pai": {
+    autor: "",
+    momento: "Ofertório",
+    secoes: [
+      { tipo: "Refrão", texto: "Cristo é o dom do Pai\nque se entregou por nós.\nAleluia, aleluia!\nBendito seja o nosso Deus!" },
+      { tipo: "Estrofe", texto: "1. Dai graças a Deus, pois Ele é bom;\neterno por nós é seu amor." },
+      { tipo: "Refrão", texto: "Cristo é o dom do Pai\nque se entregou por nós.\nAleluia, aleluia!\nBendito seja o nosso Deus!" },
+      { tipo: "Estrofe", texto: "2. Coragem e força Ele nos dá,\nfazendo-se nosso Salvador." },
+      { tipo: "Refrão", texto: "Cristo é o dom do Pai\nque se entregou por nós.\nAleluia, aleluia!\nBendito seja o nosso Deus!" },
+    ]
+  },
+  "Ao Recebermos, Senhor": {
+    autor: "",
+    momento: "Comunhão",
+    secoes: [
+      { tipo: "Refrão", texto: "Desamarrem as sandálias e descansem,\neste chão é terra santa, irmãos meus.\nVenham, orem, comam, cantem, venham todos,\ne renovem a esperança no Senhor." },
+      { tipo: "Estrofe", texto: "1. Ao recebermos, Senhor, tua presença sagrada,\npra confirmar Teu amor, faz de nós Tua morada.\nSurge um sincero louvor, brota a semente plantada.\nFaz-nos seguir Teu caminho, sempre trilhar Tua estrada." },
+      { tipo: "Refrão", texto: "Desamarrem as sandálias e descansem,\neste chão é terra santa, irmãos meus.\nVenham, orem, comam, cantem, venham todos,\ne renovem a esperança no Senhor." },
+      { tipo: "Estrofe", texto: "2. O Filho de Deus com o Pai e o Espírito Santo,\nnesta trindade, um só ser que pede a nós sermos santos.\nDai-nos, Jesus, Teu poder de se doar sem medidas,\ndeixa que compreendamos que este é o sentido da vida." },
+      { tipo: "Refrão", texto: "Desamarrem as sandálias e descansem,\neste chão é terra santa, irmãos meus.\nVenham, orem, comam, cantem, venham todos,\ne renovem a esperança no Senhor." },
+    ]
+  },
+  "Cantar a Beleza da Vida": {
+    autor: "",
+    momento: "Comunhão",
+    secoes: [
+      { tipo: "Refrão", texto: "Vem dar-nos Teu Filho, Senhor,\nsustento no pão e no vinho,\ne a força do Espírito Santo,\nunindo Teu povo a caminho!" },
+      { tipo: "Estrofe", texto: "1. Cantar a beleza da vida,\npresente do amor sem igual:\nmissão do Teu povo escolhido!\nSenhor, vem livrar-nos do mal!" },
+      { tipo: "Refrão", texto: "Vem dar-nos Teu Filho, Senhor,\nsustento no pão e no vinho,\ne a força do Espírito Santo,\nunindo Teu povo a caminho!" },
+      { tipo: "Estrofe", texto: "2. Falar do Teu Filho às nações,\nvivendo como Ele viveu:\nmissão do Teu povo escolhido!\nSenhor, vem cuidar do que é Teu!" },
+      { tipo: "Refrão", texto: "Vem dar-nos Teu Filho, Senhor,\nsustento no pão e no vinho,\ne a força do Espírito Santo,\nunindo Teu povo a caminho!" },
+    ]
+  },
+  "Todos Ficaram Cheios do Espírito Santo": {
+    autor: "",
+    momento: "Comunhão",
+    secoes: [
+      { tipo: "Refrão", texto: "Todos ficaram cheios do Espírito Santo\ne proclamavam as maravilhas de Deus.\nAleluia, aleluia!" },
+      { tipo: "Estrofe", texto: "1. Eis que Deus se põe de pé,\ne os inimigos se dispersam!\nFogem longe de sua face\nos que odeiam o Senhor." },
+      { tipo: "Refrão", texto: "Todos ficaram cheios do Espírito Santo\ne proclamavam as maravilhas de Deus.\nAleluia, aleluia!" },
+      { tipo: "Estrofe", texto: "2. Mas os justos se alegram\nna presença do Senhor,\nrejubilam satisfeitos\ne exultam de alegria." },
+      { tipo: "Refrão", texto: "Todos ficaram cheios do Espírito Santo\ne proclamavam as maravilhas de Deus.\nAleluia, aleluia!" },
+    ]
+  },
+  "O Espírito de Deus Repousa Sobre Mim": {
+    autor: "",
+    momento: "Canto Final",
+    secoes: [
+      { tipo: "Refrão", texto: "Glória, glória eterna,\nglória a Ti, Senhor. (Bis)" },
+      { tipo: "Estrofe", texto: "1. O Espírito de Deus repousa sobre mim\ne assim caminhando eu vou.\nAlegria, paz e amor,\nfruto que vem de Ti, Senhor,\nem mim brotou." },
+      { tipo: "Refrão", texto: "Glória, glória eterna,\nglória a Ti, Senhor. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Servi ao Senhor com toda alegria,\nvinde, exultaremos.\nSaber que o Senhor é Deus e Salvador,\ne só a Ele pertencemos." },
+      { tipo: "Refrão", texto: "Glória, glória eterna,\nglória a Ti, Senhor. (Bis)" },
+    ]
+  },
+  "Vem, Vem, Vem, Espírito Santo": {
+    autor: "",
+    momento: "Canto Final",
+    secoes: [
+      { tipo: "Refrão", texto: "Vem, vem, vem, Espírito Santo,\ntransforma a minha vida,\nquero renascer. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Quero abandonar-me em Seu amor,\nencharcar-me em Seus rios, Senhor,\nderrubar as barreiras em meu coração. (Bis)" },
+      { tipo: "Refrão", texto: "Vem, vem, vem, Espírito Santo,\ntransforma a minha vida,\nquero renascer. (Bis)" },
+    ]
+  },
+  "Novo Sol Brilhou": {
+    autor: "",
+    momento: "Canto Final",
+    secoes: [
+      { tipo: "Refrão", texto: "O Deus de amor jamais se descuidou,\nem seu vigor, Jesus ressuscitou. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Novo sol brilhou, a vida superou\nsofrimento, dor e morte, tudo enfim.\nNosso olhar se abriu, Deus mesmo se incumbiu\nde tomar-nos pela mão assim." },
+      { tipo: "Refrão", texto: "O Deus de amor jamais se descuidou,\nem seu vigor, Jesus ressuscitou. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Estender a mão, abrir o coração,\nacolher, compartilhar e perdoar,\né fazer o céu cumprir o seu papel,\njá na terra tem que vigorar." },
+      { tipo: "Refrão", texto: "O Deus de amor jamais se descuidou,\nem seu vigor, Jesus ressuscitou. (Bis)" },
+    ]
+  },
+  "Rainha do Céu": {
+    autor: "",
+    momento: "Canto Final",
+    secoes: [
+      { tipo: "Única", texto: "Rainha do Céu, alegrai-vos, Aleluia!\nAleluia! Aleluia! Aleluia! Aleluia! (Bis)" },
+    ]
+  },
+};
+
+// =============================================
+// FUNÇÕES DE GERAÇÃO DO PPTX
+// =============================================
+
+const FONTE = "Arial";
+const COR_TEXTO = "000000";
+const MAX_LINHAS = 6;
+const FONT_MIN = 36;
+
+function calcFonte(linhas) {
+  const n = linhas.length;
+  const maxChars = Math.max(...linhas.map(l => l.length));
+  let fs = n <= 2 ? 54 : n <= 3 ? 48 : n <= 4 ? 44 : n <= 5 ? 40 : 38;
+  if (maxChars > 30) fs = Math.min(fs, 44);
+  if (maxChars > 38) fs = Math.min(fs, 40);
+  if (maxChars > 48) fs = Math.min(fs, 38);
+  if (maxChars > 56) fs = Math.min(fs, 36);
+  return Math.max(fs, FONT_MIN);
+}
+
+function addSlides(pres, texto, negrito) {
+  const todasLinhas = texto.split("\n");
+  for (let i = 0; i < todasLinhas.length; i += MAX_LINHAS) {
+    const bloco = todasLinhas.slice(i, i + MAX_LINHAS);
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    const fs = calcFonte(bloco);
+    const arr = bloco.map((l, idx) => ({
+      text: l,
+      options: { breakLine: idx < bloco.length - 1, bold: negrito }
+    }));
+    slide.addText(arr, {
+      x: 0.3, y: 0.2, w: 9.4, h: 7.1,
+      fontSize: fs, color: COR_TEXTO,
+      fontFace: FONTE, align: "center",
+      valign: "middle", lineSpacingMultiple: 1.2
+    });
+  }
+}
+
+function addSlideTitulo(pres, titulo, autor) {
+  const slide = pres.addSlide();
+  slide.background = { color: "FFFFFF" };
+  slide.addText(titulo, {
+    x: 0.3, y: 1.5, w: 9.4, h: 2.5,
+    fontSize: 40, bold: true, color: COR_TEXTO,
+    fontFace: FONTE, align: "center", valign: "middle"
+  });
+  if (autor) {
+    slide.addText(autor, {
+      x: 0.3, y: 4.2, w: 9.4, h: 1.0,
+      fontSize: 24, italic: true, color: "666666",
+      fontFace: FONTE, align: "center"
+    });
+  }
+}
+
+function gerarPPTX(cantosSelecionados) {
+  const pres = new pptxgen();
+  pres.layout = "LAYOUT_4x3";
+  pres.title = "LiturgiaPlay — Cantos da Missa";
+
+  for (const nomeMusica of cantosSelecionados) {
+    const musica = banco[nomeMusica];
+    if (!musica) continue;
+
+    addSlideTitulo(pres, nomeMusica, musica.autor);
+
+    for (const secao of musica.secoes) {
+      const isRefrao =
+        secao.tipo === "Refrão" ||
+        secao.tipo === "Aclamação" ||
+        secao.tipo === "Única";
+      addSlides(pres, secao.texto, isRefrao);
+    }
+  }
+
+  return pres;
+}
+
+// =============================================
+// ROTAS DA API
+// =============================================
+
+// Rota de saúde — confirma que o servidor está no ar
+app.get("/", (req, res) => {
+  res.json({
+    status: "online",
+    servico: "LiturgiaPlay PPTX Generator",
+    version: "1.0.0"
+  });
+});
+
+// Rota principal — recebe cantos e devolve o PPTX
+app.post("/gerar", async (req, res) => {
+  try {
+    const { cantos, domingo, paroquia } = req.body;
+
+    if (!cantos || !Array.isArray(cantos) || cantos.length === 0) {
+      return res.status(400).json({ erro: "Envie uma lista de cantos no campo 'cantos'" });
+    }
+
+    const pres = gerarPPTX(cantos);
+    const nomeArquivo = `liturgiaplay_${(domingo || "missa").replace(/\s/g, "_")}.pptx`;
+
+    const buffer = await pres.write({ outputType: "nodebuffer" });
+
+    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+    res.setHeader("Content-Disposition", `attachment; filename="${nomeArquivo}"`);
+    res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
+    res.send(buffer);
+
+  } catch (err) {
+    console.error("Erro ao gerar PPTX:", err);
+    res.status(500).json({ erro: "Erro ao gerar o arquivo. Tente novamente." });
+  }
+});
+
+// Lista os cantos disponíveis no banco
+app.get("/cantos", (req, res) => {
+  const lista = Object.keys(banco).map(nome => ({
+    nome,
+    autor: banco[nome].autor,
+    momento: banco[nome].momento
+  }));
+  res.json({ total: lista.length, cantos: lista });
+});
+
+app.listen(PORT, () => {
+  console.log(`LiturgiaPlay API rodando na porta ${PORT}`);
+});
