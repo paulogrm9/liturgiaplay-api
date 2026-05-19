@@ -1,1 +1,22 @@
 
+name: Keep Render Alive
+
+on:
+  schedule:
+    - cron: '*/14 * * * *'  # A cada 14 minutos
+  workflow_dispatch:  # Permite rodar manualmente também
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping LiturgiaPlay API
+        run: |
+          echo "Pingando servidor LiturgiaPlay..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://liturgiaplay-api.onrender.com/)
+          echo "Status: $response"
+          if [ "$response" = "200" ]; then
+            echo "✅ Servidor acordado e respondendo!"
+          else
+            echo "⚠️ Servidor retornou status $response"
+          fi
