@@ -828,7 +828,7 @@ app.get("/", (req, res) => {
 app.post("/gerar", async (req, res) => {
   try {
     const { opcoes, domingo } = req.body;
-
+console.log(`[${new Date().toISOString()}] PPTX gerado — domingo: ${req.body.domingo}`);
     if (!opcoes) {
       return res.status(400).json({ erro: "Envie as opções de cantos no campo 'opcoes'" });
     }
