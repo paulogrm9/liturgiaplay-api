@@ -21,7 +21,16 @@ function calcFonte(linhas) {
   if (maxChars > 38) fs = Math.min(fs, 40);
   if (maxChars > 48) fs = Math.min(fs, 38);
   if (maxChars > 56) fs = Math.min(fs, 36);
-  return Math.max(fs, FONT_MIN);
+  fs = Math.max(fs, FONT_MIN);
+  // Evitar linha orfã: se última linha tem até 2 palavras curtas, reduz fonte
+  const ultima = linhas[linhas.length - 1] || "";
+  const penultima = linhas[linhas.length - 2] || "";
+  const ultimaChars = ultima.trim().length;
+  const penultimaChars = penultima.trim().length;
+  if (ultimaChars > 0 && ultimaChars <= 16 && penultimaChars > ultimaChars * 1.5 && fs > FONT_MIN) {
+    fs = Math.max(fs - 4, FONT_MIN);
+  }
+  return fs;
 }
 
 function addSlideTexto(pres, texto, negrito, corFundo) {
@@ -366,7 +375,7 @@ const banco = {
       autor: "",
       secoes: [
         { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
-        { tipo: "Estrofe", texto: "1. Senhor Deus, Rei dos céus, Deus Pai onipotente,\nvos louvamos, bendizemos, adoramos.\nNós vos glorificamos\ne nós vos damos graças por vossa imensa glória." },
+        { tipo: "Estrofe", texto: "1. Senhor Deus, Rei dos céus,\nDeus Pai onipotente,\nvos louvamos, bendizemos, adoramos.\nNós vos glorificamos\ne vos damos graças pela vossa glória." },
         { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
         { tipo: "Estrofe", texto: "2. Jesus Cristo, Senhor Deus, Filho único do Pai,\nCordeiro de Deus que tirais o pecado do mundo,\ntende piedade.\nVós que estais à direita do Pai, tende piedade.\nVós que tirais o pecado do mundo,\nacolhei a nossa súplica." },
         { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
@@ -1010,7 +1019,7 @@ const bancoTrindade = {
     ]},
     { titulo: "Glória Shalom", autor: "", secoes: [
       { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
-      { tipo: "Estrofe", texto: "1. Senhor Deus, Rei dos céus, Deus Pai onipotente,\nvos louvamos, bendizemos, adoramos.\nNós vos glorificamos\ne nós vos damos graças por vossa imensa glória." },
+      { tipo: "Estrofe", texto: "1. Senhor Deus, Rei dos céus,\nDeus Pai onipotente,\nvos louvamos, bendizemos, adoramos.\nNós vos glorificamos\ne vos damos graças pela vossa glória." },
       { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
       { tipo: "Estrofe", texto: "2. Só vós sois o Santo, o Senhor,\no Altíssimo, só vós,\nJesus Cristo, com o Espírito e o Pai." },
       { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas,\nô, ô glória e a nós a Sua paz. (Bis)" },
@@ -1339,6 +1348,8 @@ function gerarMissaTrindade(opcoes) {
 
 // =============================================
 // BANCO — 10º DOMINGO DO TEMPO COMUM
+// Letras organizadas EXATAMENTE como no documento Word
+// Cada \n corresponde a uma quebra de linha do Word
 // =============================================
 
 const bancoDecimo = {
@@ -1348,39 +1359,41 @@ const bancoDecimo = {
       titulo: "O Senhor É Minha Luz e Salvação (1)",
       secoes: [
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "1. Quando perversos me atacam,\npara rasgar minha carne,\nSão inimigos e opressores\nque tropeçam e sucumbem." },
+        { tipo: "Estrofe", texto: "Quando perversos me atacam,\npara rasgar minha carne,\nSão inimigos e opressores\nque tropeçam e sucumbem." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "2. Se contra mim se acamparem,\nnão temerá o meu coração;\nSe contra mim a batalha estourar,\nmesmo assim eu confiarei." },
+        { tipo: "Estrofe", texto: "Se contra mim se acamparem,\nnão terá o meu coração;\nSe contra mim a batalha estourar,\nmesmo assim eu confiarei." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "3. Peço ao Senhor uma coisa só,\ne é só isto que eu desejo:\nNo santuário do Senhor habitarei\npelos tempos infinitos." },
+        { tipo: "Estrofe", texto: "Peço ao Senhor uma coisa só,\ne é só isto que eu desejo:\nNo santuário do Senhor habitarei\npelos tempos infinitos;" },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "4. Em sua casa vou habitar,\nsaborear sua suavidade,\nA suavidade do meu Senhor\ne contemplá-lo no templo." },
+        { tipo: "Estrofe", texto: "Em sua casa vou habitar,\nsaborear sua suavidade,\nA suavidade do meu Senhor\ne contemplá-lo no templo." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "5. Sob o seu teto me abrigará,\nnos dias do infortúnio;\nNo interior de sua tenda me esconde\ne sobre a rocha me protege." },
+        { tipo: "Estrofe", texto: "Sob o seu teto me abrigará,\nnos dias do infortúnio;\nNo interior de sua tenda me esconde\ne sobre a rocha me protege." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nÉ Ele a defesa da minha vida,\nperante quem eu tremerei?" },
       ]
     },
     {
       titulo: "O Senhor É Minha Luz (2)",
       secoes: [
-        { tipo: "Refrão", texto: "O Senhor é minha luz,\nEle é minha salvação.\nQue poderei temer?\nDeus, minha proteção!" },
-        { tipo: "Estrofe", texto: "1. O Senhor é minha luz,\nEle é minha salvação.\nO que é que eu vou temer?\nDeus é minha proteção.\nEle guarda minha vida,\neu não vou ter medo, não.\nEle guarda minha vida,\neu não vou ter medo, não." },
-        { tipo: "Refrão", texto: "O Senhor é minha luz,\nEle é minha salvação.\nQue poderei temer?\nDeus, minha proteção!" },
-        { tipo: "Estrofe", texto: "2. Quando os maus vêm avançando,\nprocurando me acuar,\ndesejando ver meu fim,\nquerendo me matar.\nInimigos opressores\né que vão se liquidar.\nInimigos opressores\né que vão se liquidar." },
-        { tipo: "Refrão", texto: "O Senhor é minha luz,\nEle é minha salvação.\nQue poderei temer?\nDeus, minha proteção!" },
-        { tipo: "Estrofe", texto: "3. Se um exército se armar\ncontra mim, não temerei.\nMeu coração está firme\ne firme ficarei.\nSe estourar uma batalha,\nmesmo assim, confiarei!\nSe estourar uma batalha,\nmesmo assim, confiarei!" },
-        { tipo: "Refrão", texto: "O Senhor é minha luz,\nEle é minha salvação.\nQue poderei temer?\nDeus, minha proteção!" },
-        { tipo: "Estrofe", texto: "4. Sei que hei de ver um dia\na bondade do Senhor\nlá, na terra dos viventes,\nviverei no seu amor.\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu Senhor!\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu Senhor!" },
-        { tipo: "Refrão", texto: "O Senhor é minha luz,\nEle é minha salvação.\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "O senhor é minha luz\nEle é minha salvação\nO que é que eu vou temer?\nDeus é minha proteção\nEle guarda minha vida\nEu não vou ter medo, não\nEle guarda minha vida\nEu não vou ter medo, não" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "Quando os maus vêm avançando\nProcurando me acuar\nDesejando ver meu fim\nQuerendo me matar\nInimigos opressores\nÉ que vão se liquidar\nInimigos opressores\nÉ que vão se liquidar" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "Se um exército se armar\nContra mim, não temerei\nMeu coração está firme\nE firme ficarei\nSe estourar uma batalha\nMesmo assim, confiarei!\nSe estourar uma batalha\nMesmo assim, confiarei!" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "Sei que eu hei de ver\nUm dia, a bondade do senhor\nLá, na terra dos viventes\nViverei no seu amor\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu senhor!\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu senhor!" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
       ]
     },
     {
       titulo: "O Senhor É Minha Luz e Salvação (3)",
       secoes: [
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "1. Quando avançam os malvados contra mim,\nquerendo devorar-me,\nsão eles, inimigos e opressores,\nque tropeçam e sucumbem." },
+        { tipo: "Estrofe", texto: "QUANDO AVANÇAM\nOS MALVADOS CONTRA MIM,\nQUERENDO DEVORAR-ME,\nSÃO ELES, INIMIGOS E OPRESSORES,\nQUE TROPEÇAM E SUCUMBEM." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "2. Ao Senhor eu peço apenas uma coisa,\ne é só isto que eu desejo:\nHabitar no santuário do Senhor\npor toda a minha vida." },
+        { tipo: "Estrofe", texto: "AO SENHOR EU PEÇO\nAPENAS UMA COISA,\nE É SÓ ISTO QUE EU DESEJO:\nHABITAR NO SANTUÁRIO DO SENHOR\nPOR TODA A MINHA VIDA;" },
+        { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
+        { tipo: "Estrofe", texto: "O SENHOR É MINHA LUZ E SALVAÇÃO;\nDE QUEM EU TEREI MEDO?\nO SENHOR É A PROTEÇÃO\nDA MINHA VIDA;\nPERANTE QUEM EU TREMEREI?" },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\nde quem eu terei medo?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
       ]
     },
@@ -1388,11 +1401,11 @@ const bancoDecimo = {
       titulo: "O Senhor É Minha Luz e Salvação (4)",
       secoes: [
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\na quem poderia eu temer?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "1. Quando avançam os malvados contra mim,\nquerendo devorar-me,\nsão eles, inimigos e opressores,\nque tropeçam e sucumbem." },
+        { tipo: "Estrofe", texto: "Quando avançam os malvados\ncontra mim, querendo devorar-me,\nsão eles, inimigos e opressores,\nque tropeçam e sucumbem." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\na quem poderia eu temer?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "2. Se os inimigos se acamparem contra mim,\nnão temerá meu coração;\nse contra mim uma batalha estourar,\nmesmo assim confiarei." },
+        { tipo: "Estrofe", texto: "Se os inimigos se acamparem\ncontra mim, não temerá meu coração;\nse contra mim uma batalha estourar,\nmesmo assim confiarei." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\na quem poderia eu temer?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
-        { tipo: "Estrofe", texto: "3. Ao Senhor eu peço apenas uma coisa,\ne é só isto que eu desejo:\nHabitar no santuário do Senhor\npor toda a minha vida." },
+        { tipo: "Estrofe", texto: "Ao Senhor eu peço apenas uma coisa,\ne é só isto que eu desejo:\nhabitar no santuário do Senhor\npor toda a minha vida;" },
         { tipo: "Refrão", texto: "O Senhor é minha luz e salvação,\na quem poderia eu temer?\nO Senhor é a proteção da minha vida,\nperante quem eu tremerei?" },
       ]
     },
@@ -1400,11 +1413,11 @@ const bancoDecimo = {
       titulo: "O Senhor É Minha Luz e Salvação (5)",
       secoes: [
         { tipo: "Refrão", texto: "O Senhor é minha luz e minha salvação,\na quem poderia eu temer?\nO Senhor é o baluarte de minha vida,\nperante quem tremerei?" },
-        { tipo: "Estrofe", texto: "1. Se os inimigos se acamparem contra mim,\nnão temerá meu coração." },
+        { tipo: "Estrofe", texto: "Se os inimigos\nse acamparem contra mim,\nnão temerá meu coração." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e minha salvação,\na quem poderia eu temer?\nO Senhor é o baluarte de minha vida,\nperante quem tremerei?" },
-        { tipo: "Estrofe", texto: "2. Se contra mim uma batalha estourar,\nmesmo assim confiarei." },
+        { tipo: "Estrofe", texto: "Se contra mim\numa batalha estourar,\nmesmo assim confiarei." },
         { tipo: "Refrão", texto: "O Senhor é minha luz e minha salvação,\na quem poderia eu temer?\nO Senhor é o baluarte de minha vida,\nperante quem tremerei?" },
-        { tipo: "Estrofe", texto: "3. Quero habitar no santuário do Senhor\npor toda a minha vida!" },
+        { tipo: "Estrofe", texto: "Quero habitar\nno santuário do Senhor\npor toda a minha vida!" },
         { tipo: "Refrão", texto: "O Senhor é minha luz e minha salvação,\na quem poderia eu temer?\nO Senhor é o baluarte de minha vida,\nperante quem tremerei?" },
       ]
     },
@@ -1414,173 +1427,341 @@ const bancoDecimo = {
     {
       titulo: "Senhor, Tende Piedade dos Corações Arrependidos",
       secoes: [
-        { tipo: "Estrofe", texto: "Senhor, tende piedade\ndos corações arrependidos.\nTende piedade de nós! (4x)" },
-        { tipo: "Estrofe", texto: "Jesus, tende piedade\ndos pecadores, tão humilhados!\nTende piedade de nós! (4x)" },
-        { tipo: "Estrofe", texto: "Senhor, tende piedade\nintercedendo por nós ao Pai!\nTende piedade de nós! (4x)" },
+        { tipo: "Estrofe", texto: "Senhor, tende piedade\ndos corações arrependidos" },
+        { tipo: "Refrão", texto: "Tende piedade de nós! (4x)" },
+        { tipo: "Estrofe", texto: "Jesus, tende piedade\ndos pecadores, tão humilhados!" },
+        { tipo: "Refrão", texto: "Tende piedade de nós! (4x)" },
+        { tipo: "Estrofe", texto: "Senhor, tende piedade\nintercedendo por nós ao pai!" },
+        { tipo: "Refrão", texto: "Tende piedade de nós! (4x)" },
       ]
     },
     {
       titulo: "Quero Confessar a Ti",
       secoes: [
-        { tipo: "Estrofe", texto: "Quero confessar a Ti,\nilumina a minha alma.\nEu reconheço, sou pecador.\nDiante de mim eu sei\nestá sempre o meu pecado.\nFoi contra vós que eu pequei." },
+        { tipo: "Estrofe", texto: "Quero confessar a Ti\nIlumina a minha alma\nEu reconheço, sou pecador\nDiante de mim eu sei\nEstá sempre o meu pecado\nFoi contra vós que eu pequei" },
         { tipo: "Refrão", texto: "Kyrie eleison!\nChriste eleison!\nKyrie eleison!" },
       ]
     },
     {
       titulo: "Senhor Que Vieste Salvar",
       secoes: [
-        { tipo: "Estrofe", texto: "1. Senhor que viestes salvar\nos corações arrependidos.\nPiedade, Piedade,\nPiedade de nós. (Bis)" },
-        { tipo: "Estrofe", texto: "2. Ó, Cristo que viestes chamar\nos pecadores humilhados.\nPiedade, Piedade,\nPiedade de nós. (Bis)" },
-        { tipo: "Estrofe", texto: "3. Senhor que intercedeis por nós\njunto a Deus Pai que nos perdoa.\nPiedade, Piedade,\nPiedade de nós. (Bis)" },
+        { tipo: "Estrofe", texto: "1 Senhor que viestes salvar\nOs corações arrependidos" },
+        { tipo: "Refrão", texto: "Piedade, Piedade,\nPiedade de nós (2x)" },
+        { tipo: "Estrofe", texto: "2 Ó, Cristo que viestes chamar\nOs pecadores humilhados" },
+        { tipo: "Refrão", texto: "Piedade, Piedade,\nPiedade de nós (2x)" },
+        { tipo: "Estrofe", texto: "3 Senhor que intercedeis por nós\nJunto a Deus Pai que nos perdoa" },
+        { tipo: "Refrão", texto: "Piedade, Piedade,\nPiedade de nós (2x)" },
       ]
     },
     {
       titulo: "Oh Senhor",
       secoes: [
-        { tipo: "Estrofe", texto: "1. Oh Senhor, tende piedade de nós!\nOh Senhor, tende piedade de nós!" },
-        { tipo: "Estrofe", texto: "2. Cristo, tende piedade de nós!\nCristo, tende piedade de nós!" },
-        { tipo: "Estrofe", texto: "3. Oh Senhor, tende piedade de nós!\nOh Senhor, tende piedade de nós!" },
+        { tipo: "Estrofe", texto: "1 Oh Senhor, tende piedade de nós!\nOh Senhor, tende piedade de nós!" },
+        { tipo: "Estrofe", texto: "2 Cristo, tende piedade de nós!\nCristo, tende piedade de nós!" },
+        { tipo: "Estrofe", texto: "3 Oh Senhor, tende piedade de nós!\nOh Senhor, tende piedade de nós!" },
       ]
     },
     {
       titulo: "Kyrie Eleison (JMJ)",
       secoes: [
-        { tipo: "Estrofe", texto: "1. Senhor que vieste salvar\nos corações arrependidos.\nKyrie Eleison, Eleison, Eleison. (Bis)" },
-        { tipo: "Estrofe", texto: "2. O Cristo que vieste chamar\nos pecadores humilhados.\nChriste Eleison, Eleison, Eleison. (Bis)" },
-        { tipo: "Estrofe", texto: "3. Senhor que intercedeis por nós\njuntos a Deus Pai que nos perdoa.\nKyrie Eleison, Eleison, Eleison. (Bis)" },
+        { tipo: "Estrofe", texto: "1 Senhor que vieste salvar\nOs corações arrependidos" },
+        { tipo: "Refrão", texto: "Kyrie Eleison, Eleison, Eleison (2x)" },
+        { tipo: "Estrofe", texto: "2 O Cristo que vieste chamar\nOs pecadores humilhados" },
+        { tipo: "Refrão", texto: "Christe Eleison, Eleison, Eleison (2x)" },
+        { tipo: "Estrofe", texto: "3 Senhor que intercedeis por nós\nJuntos a Deus Pai que nos perdoa" },
+        { tipo: "Refrão", texto: "Kyrie Eleison, Eleison, Eleison (2x)" },
       ]
     },
     {
       titulo: "Senhor, Vós Sois o Caminho",
       secoes: [
-        { tipo: "Estrofe", texto: "Senhor vós sois o caminho,\nguiai-nos ao Pai com carinho.\nDe nós tende piedade,\nSenhor, tende piedade!" },
-        { tipo: "Estrofe", texto: "Ó Cristo, sois a verdade,\nenchei-nos de caridade.\nDe nós tende piedade,\nÓ Cristo, tende piedade!" },
-        { tipo: "Estrofe", texto: "Senhor, vós sois nossa vida,\nbuscais a ovelha perdida.\nDe nós tende piedade,\nSenhor, tende piedade!" },
+        { tipo: "Estrofe", texto: "Senhor vós sois o caminho\nGuiai-nos ao Pai com carinho\nDe nós tende piedade\nSenhor, tende piedade!" },
+        { tipo: "Estrofe", texto: "Ó Cristo, sois a verdade\nEnchei-nos de caridade\nDe nós tende piedade,\nÓ Cristo, tende piedade!" },
+        { tipo: "Estrofe", texto: "Senhor, vós sois nossa vida\nBuscais a ovelha perdida\nDe nós tende piedade\nSenhor, tende piedade!" },
       ]
     },
   ],
 
+  gloria: [
+    { titulo: "Glória (Vinde Cristãos)", autor: "", secoes: [
+      { tipo: "Estrofe", texto: "Glória a Deus nos altos céus,\npaz na terra aos seus amados\nA vós vos louvam, Rei celeste,\nos que foram libertados" },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "Deus e Pai nós vos louvamos,\nadoramos, bendizemos\nDamos glória ao vosso nome,\nvossos dons agradecemos" },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor nosso Jesus Cristo,\nunigênito do Pai\nVós de Deus cordeiro Santo,\nnossas culpas perdoai" },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "Vós que estais junto do Pai,\ncomo nosso intercessor\nAcolhei nossos pedidos,\natendei nosso clamor." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+      { tipo: "Estrofe", texto: "Vós somente sois o Santo,\no altíssimo, o Senhor\nCom o espírito divino,\nde Deus Pai o esplendor." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas! (Bis)" },
+    ]},
+    { titulo: "Glória, Glória, Glória a Deus", autor: "", secoes: [
+      { tipo: "Refrão", texto: "Glória, glória, glória a Deus\nnas alturas e na terra paz aos homens!" },
+      { tipo: "Estrofe", texto: "Senhor Deus, Rei dos céus,\nDeus Pai todo poderoso.\nNós vos louvamos, nós vos bendizemos\nnós vos adoramos, nós vos glorificamos.\nNós vos damos graças por vossa imensa glória." },
+      { tipo: "Refrão", texto: "Glória, glória, glória a Deus\nnas alturas e na terra paz aos homens!" },
+      { tipo: "Estrofe", texto: "Senhor Jesus Cristo, Filho Unigênito,\nSenhor Deus, Cordeiro de Deus,\nFilho de Deus Pai. Vós que tirais\no pecado do mundo, tende piedade de nós.\nVós que tirais o pecado do mundo,\nacolhei a nossa súplica.\nVós que estais à direita do Pai,\ntende piedade de nós." },
+      { tipo: "Refrão", texto: "Glória, glória, glória a Deus\nnas alturas e na terra paz aos homens!" },
+      { tipo: "Estrofe", texto: "Só vós sois Santo, só vós o Senhor,\nsó vós o Altíssimo, Jesus Cristo!\nCom o Espírito Santo,\nna glória de Deus Pai. Amém." },
+      { tipo: "Refrão", texto: "Glória, glória, glória a Deus\nnas alturas e na terra paz aos homens!" },
+    ]},
+    { titulo: "Glória a Deus nas Alturas", autor: "Casemiro Nogueira", secoes: [
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\nglória a Deus nas alturas,\nglória a Deus nas alturas\ne paz na terra aos homens\npor Ele amados." },
+      { tipo: "Estrofe", texto: "Senhor Deus, Rei dos céus,\nDeus Pai todo poderoso.\nNós vos louvamos, nós vos bendizemos,\nnós vos adoramos, nós vos glorificamos,\nnós vos damos graças\npor vossa imensa glória." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\nglória a Deus nas alturas,\nglória a Deus nas alturas\ne paz na terra aos homens\npor Ele amados." },
+      { tipo: "Estrofe", texto: "Senhor Jesus Cristo, Filho Unigênito.\nSenhor Deus, Cordeiro de Deus,\nFilho de Deus Pai.\nVós que tirais o pecado do mundo,\ntende piedade de nós.\nVós que tirais o pecado do mundo,\nacolhei a nossa súplica. Vós que estais\nà direita do Pai, tende piedade de nós." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\nglória a Deus nas alturas,\nglória a Deus nas alturas\ne paz na terra aos homens\npor Ele amados." },
+      { tipo: "Estrofe", texto: "Só vós sois Santo. Só vós o Senhor,\nsó vós o Altíssimo, Jesus Cristo!\nCom o Espírito Santo,\nna glória de Deus Pai. Amém!" },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\nglória a Deus nas alturas,\nglória a Deus nas alturas\ne paz na terra aos homens\npor Ele amados." },
+    ]},
+    { titulo: "Glória a Deus nos Altos Céus", autor: "", secoes: [
+      { tipo: "Estrofe", texto: "1. Glória a Deus nos altos céus,\npaz na terra a seus amados\nA vós louvam rei celeste,\nos que foram libertados." },
+      { tipo: "Refrão", texto: "Glória a Deus lá nos céus\ne paz aos seus amém. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Deus e pai nós vos louvamos,\nadoramos, bendizemos\nDamos glória ao vosso nome,\nvossos dons agradecemos" },
+      { tipo: "Refrão", texto: "Glória a Deus lá nos céus\ne paz aos seus amém. (Bis)" },
+      { tipo: "Estrofe", texto: "3. Senhor nosso Jesus cristo,\nunigênito do pai\nVós de Deus cordeiro santo,\nnossas culpas perdoai" },
+      { tipo: "Refrão", texto: "Glória a Deus lá nos céus\ne paz aos seus amém. (Bis)" },
+      { tipo: "Estrofe", texto: "4. Vós que estais junto do pai,\ncomo nosso intercessor\nAcolhei nossos pedidos,\natendei nosso clamor" },
+      { tipo: "Refrão", texto: "Glória a Deus lá nos céus\ne paz aos seus amém. (Bis)" },
+      { tipo: "Estrofe", texto: "5. Vós somente sois o santo,\no altíssimo senhor\nCom o Espírito Divino\nde Deus Pai no esplendor!" },
+      { tipo: "Refrão", texto: "Glória a Deus lá nos céus\ne paz aos seus amém. (Bis)" },
+    ]},
+    { titulo: "Glória a Deus lá nos Céus, e Paz na Terra aos Seus!", autor: "", secoes: [
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+      { tipo: "Estrofe", texto: "GLÓRIA A DEUS NOS ALTOS CÉUS,\nPAZ NA TERRA A SEUS AMADOS,\nA VÓS LOUVAM, REI CELESTE,\nOS QUE FORAM LIBERTADOS!" },
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+      { tipo: "Estrofe", texto: "DEUS E PAI, NÓS VOS LOUVAMOS,\nADORAMOS, BENDIZEMOS;\nDAMOS GLÓRIA AO VOSSO NOME,\nVOSSOS DONS AGRADECEMOS!" },
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+      { tipo: "Estrofe", texto: "SENHOR NOSSO, JESUS CRISTO,\nUNIGÊNITO DO PAI,\nVÓS DE DEUS, CORDEIRO SANTO,\nNOSSAS CULPAS PERDOAI!" },
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+      { tipo: "Estrofe", texto: "VÓS QUE ESTAIS JUNTO DO PAI,\nCOMO NOSSO INTERCESSOR,\nACOLHEI NOSSOS PEDIDOS,\nATENDEI NOSSO CLAMOR!" },
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+      { tipo: "Estrofe", texto: "VÓS SOMENTE SOIS O SANTO,\nO ALTÍSSIMO, O SENHOR,\nCOM O ESPÍRITO DIVINO,\nDE DEUS PAI NO ESPLENDOR!" },
+      { tipo: "Refrão", texto: "GLÓRIA A DEUS LÁ NOS CÉUS,\nE PAZ NA TERRA AOS SEUS! (Bis)" },
+    ]},
+    { titulo: "Glória, Glória a Deus nas Alturas", autor: "", secoes: [
+      { tipo: "Refrão", texto: "GLORIA, GLORIA,\nA DEUS NAS ALTURA. (Bis)" },
+      { tipo: "Estrofe", texto: "Glória a Deus nas alturas\nE paz na terra aos homens por Ele amados\nSenhor Deus, Rei dos céus, Deus Pai todo-poderoso\nNós vos louvamos, Nós vos bendizemos\nNós vos adoramos, Nós vos glorificamos\nNós vos damos graças, por vossa imensa glória" },
+      { tipo: "Refrão", texto: "GLORIA, GLORIA,\nA DEUS NAS ALTURA. (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor Jesus Cristo, Filho Unigênito\nSenhor Deus, Cordeiro de Deus, Filho de Deus Pai\nVós que tirais o pecado do mundo, tende piedade de nós\nVós que tirais o pecado do mundo, acolhei a nossa súplica\nVós que estais à direita do Pai. Tende piedade de nós" },
+      { tipo: "Refrão", texto: "GLORIA, GLORIA,\nA DEUS NAS ALTURA. (Bis)" },
+      { tipo: "Estrofe", texto: "Só vós sois Santo. Só vós o Senhor\nSó vós o Altíssimo, Jesus Cristo\nCom o Espírito Santo\nNa glória de Deus Pai, amém!" },
+      { tipo: "Refrão", texto: "GLORIA, GLORIA,\nA DEUS NAS ALTURA. (Bis)" },
+    ]},
+    { titulo: "Glória Shalom", autor: "", secoes: [
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas\nÔ, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "1 Senhor Deus, Rei dos céus,\nDeus Pai onipotente\nVos louvamos, bendizemos,\nAdoramos. Nós Vos glorificamos\ne nós Vos damos graças, por Vossa" },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas\nÔ, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Jesus Cristo, Senhor Deus,\nFilho único do Pai\nCordeiro de Deus que tirais\no pecado do mundo, tende piedade\nVós que estais a direita do Pai,\ntende piedade. Vós que tirais\no pecado do mundo, tende piedade,\nacolhei a nossa súplica" },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas\nÔ, ô glória e a nós a Sua paz. (Bis)" },
+      { tipo: "Estrofe", texto: "3 Só Vós sois o Santo, o Senhor,\no Altíssimo, só Vós Jesus Cristo,\ncom o Espírito e o Pai, em sua" },
+      { tipo: "Refrão", texto: "Glória, glória a Deus nas alturas\nÔ, ô glória e a nós a Sua paz. (Bis)" },
+    ]},
+    { titulo: "Ô Ô Glória", autor: "", secoes: [
+      { tipo: "Refrão", texto: "Ô Ô GLÓRIA, Ô GLÓRIA!\nA DEUS PAI A JESUS CRISTO\nE AO ESPÍRITO DE AMOR (Bis)" },
+      { tipo: "Estrofe", texto: "DEUS E PAI NÓS VOS LOUVAMOS\nADORAMOS, BENDIZEMOS,\nDAMOS GLÓRIA A VOSSO NOME,\nVOSSOS DONS AGRADECEMOS." },
+      { tipo: "Refrão", texto: "Ô Ô GLÓRIA, Ô GLÓRIA!\nA DEUS PAI A JESUS CRISTO\nE AO ESPÍRITO DE AMOR (Bis)" },
+      { tipo: "Estrofe", texto: "SENHOR NOSSO JESUS CRISTO\nUNIGÊNITO DO PAI,\nVÓS DE DEUS, CORDEIRO SANTO,\nNOSSAS CULPAS PERDOAI." },
+      { tipo: "Refrão", texto: "Ô Ô GLÓRIA, Ô GLÓRIA!\nA DEUS PAI A JESUS CRISTO\nE AO ESPÍRITO DE AMOR (Bis)" },
+      { tipo: "Estrofe", texto: "VÓS QUE ESTAIS JUNTO DO PAI,\nCOMO NOSSO INTERCESSOR,\nACOLHEI NOSSOS PEDIDOS\nATENDEI NOSSO CLAMOR." },
+      { tipo: "Refrão", texto: "Ô Ô GLÓRIA, Ô GLÓRIA!\nA DEUS PAI A JESUS CRISTO\nE AO ESPÍRITO DE AMOR (Bis)" },
+      { tipo: "Estrofe", texto: "VÓS SOMENTE SOIS O SANTO\nO ALTÍSSIMO SENHOR\nCOM O ESPÍRITO DIVIN\nDE DEUS PAI NO ESPLENDOR." },
+      { tipo: "Refrão", texto: "Ô Ô GLÓRIA, Ô GLÓRIA!\nA DEUS PAI A JESUS CRISTO\nE AO ESPÍRITO DE AMOR (Bis)" },
+    ]},
+    { titulo: "Glória, Glória, Anjos do Céu", autor: "", secoes: [
+      { tipo: "Refrão", texto: "Glória, glória, anjos do céu\nCantam todos Seu amor\nE na terra, homens de paz\nDeus merece o louvor. (Bis)" },
+      { tipo: "Estrofe", texto: "1 Deus e Pai, nós Vos louvamos\nAdoramos, bendizemos\nDamos glória ao Vosso nome\nVossos dons agradecemos" },
+      { tipo: "Refrão", texto: "Glória, glória, anjos do céu\nCantam todos Seu amor\nE na terra, homens de paz\nDeus merece o louvor. (Bis)" },
+      { tipo: "Estrofe", texto: "2 Senhor nosso, Jesus Cristo\nUnigênito do Pai\nVós de Deus Cordeiro Santo\nNossas culpas perdoai" },
+      { tipo: "Refrão", texto: "Glória, glória, anjos do céu\nCantam todos Seu amor\nE na terra, homens de paz\nDeus merece o louvor. (Bis)" },
+      { tipo: "Estrofe", texto: "3 Vós que estais junto do Pai\nComo nosso intercessor\nAcolhei nossos pedidos\nAtendei nosso clamor" },
+      { tipo: "Refrão", texto: "Glória, glória, anjos do céu\nCantam todos Seu amor\nE na terra, homens de paz\nDeus merece o louvor. (Bis)" },
+      { tipo: "Estrofe", texto: "4 Vós somente sois o Santo\nO Altíssimo, o Senhor\nCom o espírito divino\nDe Deus Pai no esplendor" },
+      { tipo: "Refrão", texto: "Glória, glória, anjos do céu\nCantam todos Seu amor\nE na terra, homens de paz\nDeus merece o louvor. (Bis)" },
+    ]},
+    { titulo: "Glória a Deus nas Alturas", autor: "Pe. Ney Brasil", secoes: [
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\ne paz na terra aos homens\npor Ele amados. (Bis)" },
+      { tipo: "Estrofe", texto: "Senhor Deus, rei dos céus,\nDeus Pai todo-poderoso:\nnós vos louvamos, nós vos bendizemos,\nnós vos adoramos, nós vos glorificamos." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\ne paz na terra aos homens\npor Ele amados. (Bis)" },
+      { tipo: "Estrofe", texto: "Nós vos damos graças\npor vossa imensa glória.\nSenhor Jesus Cristo, Filho Unigênito,\nSenhor Deus, Cordeiro de Deus,\nFilho de Deus Pai." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\ne paz na terra aos homens\npor Ele amados. (Bis)" },
+      { tipo: "Estrofe", texto: "Vós que tirais o pecado do mundo,\ntende piedade de nós.\nVós que tirais o pecado do mundo,\nacolhei a nossa súplica.\nVós que estais à direita do Pai,\ntende piedade de nós." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\ne paz na terra aos homens\npor Ele amados. (Bis)" },
+      { tipo: "Estrofe", texto: "Só vós sois o Santo, só vós, o Senhor,\nsó vós, o Altíssimo, Jesus Cristo,\ncom o Espírito Santo, na glória de Deus Pai." },
+      { tipo: "Refrão", texto: "Glória a Deus nas alturas,\ne paz na terra aos homens\npor Ele amados. (Bis)" },
+    ]},
+  ],
+
   aclamacao: [
-    {
-      titulo: "Aleluia! (1)",
-      secoes: [
-        { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! Aleluia! (Bis)" },
-        { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
-        { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! Aleluia! (Bis)" },
-      ]
-    },
-    {
-      titulo: "Aleluia! (2)",
-      secoes: [
-        { tipo: "Refrão", texto: "Aleluia! (11x)" },
-        { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
-        { tipo: "Refrão", texto: "Aleluia! (11x)" },
-      ]
-    },
-    {
-      titulo: "Aleluia! (3)",
-      secoes: [
-        { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (Bis)" },
-        { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
-        { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (Bis)" },
-      ]
-    },
+    { titulo: "Aleluia! (1)", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+      { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+    ]},
+    { titulo: "Aleluia! (2)", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! (11x)" },
+      { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
+      { tipo: "Refrão", texto: "Aleluia! (11x)" },
+    ]},
+    { titulo: "Aleluia! (3)", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (BIS)" },
+      { tipo: "Estrofe", texto: "Foi o Senhor quem me mandou\nboas notícias anunciar;\nao pobre, a quem está no cativeiro,\nlibertação eu vou proclamar." },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (BIS)" },
+    ]},
   ],
 
   ofertorio: [
     { titulo: "Bendito e Louvado Seja o Pai", secoes: [
-      { tipo: "Estrofe", texto: "1. Bendito e louvado seja\no Pai nosso criador,\no pão que nós recebemos\né prova do seu amor.\nÉ o fruto de sua terra\ndo povo trabalhador,\nna missa é transformado\nno corpo do Salvador." },
-      { tipo: "Refrão", texto: "Bendito seja Deus,\nbendito seu amor.\nBendito seja Deus\nPai onipotente, nosso Criador. (Bis)" },
-      { tipo: "Estrofe", texto: "2. Bendito e louvado seja\no Pai nosso criador,\no vinho que recebemos\né prova do seu amor.\nÉ o fruto de sua terra\ndo povo trabalhador,\nna missa é transformado\nno sangue do Salvador." },
-      { tipo: "Refrão", texto: "Bendito seja Deus,\nbendito seu amor.\nBendito seja Deus\nPai onipotente, nosso Criador. (Bis)" },
+      { tipo: "Estrofe", texto: "1. Bendito e louvado seja\no Pai nosso criador,\no pão que nós recebemos\né prova do seu amor.\nO pão que nós recebemos\né prova do seu amor.\nÉ o fruto de sua terra\ndo povo trabalhador.\nO fruto de sua terra\ndo povo trabalhador,\nna missa é transformado\nno corpo do Salvador." },
+      { tipo: "Refrão", texto: "Bendito seja Deus,\nbendito seu amor.\nBendito seja Deus\nPai onipotente,\nnosso Criador. (Bis)" },
+      { tipo: "Estrofe", texto: "2. Bendito e louvado seja\no Pai nosso criador,\no vinho que recebemos\né prova do seu amor.\nO vinho que recebemos\né prova do seu amor.\nÉ o fruto de sua terra\ndo povo trabalhador.\nO fruto de sua terra\ndo povo trabalhador,\nna missa é transformado\nno sangue do Salvador." },
+      { tipo: "Refrão", texto: "Bendito seja Deus,\nbendito seu amor.\nBendito seja Deus\nPai onipotente,\nnosso Criador. (Bis)" },
     ]},
     { titulo: "Daqui do Meu Lugar", secoes: [
-      { tipo: "Estrofe", texto: "1. Daqui do meu lugar, eu olho o teu altar\ne fico a imaginar aquele pão, aquela refeição.\nPartiste aquele pão e o deste aos teus irmãos,\ncriaste a religião do pão do céu,\ndo pão que vem do céu." },
-      { tipo: "Refrão", texto: "Somos a Igreja do pão,\ndo pão repartido, e do abraço e da paz. (Bis)" },
-      { tipo: "Estrofe", texto: "2. Daqui do meu lugar, eu olho o teu altar\ne fico a imaginar aquela paz, aquela comunhão.\nViveste aquela paz e a deste aos teus irmãos,\ncriaste a religião do pão da paz,\nda paz que vem do céu." },
-      { tipo: "Refrão", texto: "Somos a Igreja da paz,\nda paz partilhada, e do abraço e do pão. (Bis)" },
+      { tipo: "Estrofe", texto: "1 Daqui do meu lugar,\neu olho o teu altar\nE fico a imaginar aquele pão,\naquela refeição\nPartiste aquele pão\ne o deste aos teus irmãos\nCriaste a religião do pão do céu\nDo pão que vem do céu" },
+      { tipo: "Refrão", texto: "Somos a Igreja do pão\nDo pão repartido,\ne do abraço e da paz. (BIS)" },
+      { tipo: "Estrofe", texto: "2 Daqui do meu lugar,\neu olho o teu altar\nE fico a imaginar aquela paz,\naquela comunhão\nViveste aquela paz\ne a deste aos teus irmãos\nCriaste a religião do pão da paz\nDa paz que vem do céu" },
+      { tipo: "Refrão", texto: "Somos a Igreja da paz\nDa paz partilhada,\ne do abraço e do pão. (BIS)" },
     ]},
     { titulo: "De Mãos Estendidas", secoes: [
-      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\no que de graça, recebemos. (Bis)" },
-      { tipo: "Estrofe", texto: "1. A Natureza tão bela,\nque é louvor, que é serviço.\nO Sol que ilumina as trevas,\ntransformando-as em luz.\nO dia que nos traz o pão\ne a noite que nos dá o repouso.\nOfertemos ao Senhor\no louvor da criação." },
-      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\no que de graça, recebemos. (Bis)" },
-      { tipo: "Estrofe", texto: "2. Nossa vida, toda inteira,\nofertamos ao Senhor.\nCom o vinho e com o pão,\nofertemos ao Senhor\nnossa vida, toda inteira,\no louvor da criação." },
-      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\no que de graça, recebemos. (Bis)" },
+      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\nO que de graça, recebemos. (BIS)" },
+      { tipo: "Estrofe", texto: "1 A Natureza tão bela\nQue é louvor, que é serviço\nO Sol que ilumina as trevas\nTransformando-as em luz\nO dia que nos traz o pão\nE a noite que nos dá o repouso\nOfertemos ao Senhor\nO louvor da criação" },
+      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\nO que de graça, recebemos. (BIS)" },
+      { tipo: "Estrofe", texto: "2 Nossa vida, toda inteira\nOfertamos ao Senhor\nComo prova de amizade\nComo prova de amor\nCom o vinho e com o pão\nOfertemos ao Senhor\nNossa vida, toda inteira\nO louvor da criação" },
+      { tipo: "Refrão", texto: "De mãos estendidas ofertamos\nO que de graça, recebemos. (BIS)" },
     ]},
     { titulo: "Muitos Grãos de Trigo", secoes: [
-      { tipo: "Estrofe", texto: "1. Muitos grãos de trigo, se tornaram pão,\nhoje são Teu corpo, ceia e comunhão.\nMuitos grãos de trigo, se tornaram pão." },
-      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação,\npara mudá-la em fruto e missão.\nToma, Senhor, nossa vida em ação,\npara mudá-la em missão." },
-      { tipo: "Estrofe", texto: "2. Muitos cachos de uva, se tornaram vinho,\nhoje são Teu sangue, força no caminho.\nMuitos cachos de uva, se tornaram vinho." },
-      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação,\npara mudá-la em fruto e missão.\nToma, Senhor, nossa vida em ação,\npara mudá-la em missão." },
-      { tipo: "Estrofe", texto: "3. Muitas são as vidas, feitas vocação,\nhoje oferecidas em consagração.\nMuitas são as vidas, feitas vocação." },
-      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação,\npara mudá-la em fruto e missão.\nToma, Senhor, nossa vida em ação,\npara mudá-la em missão." },
+      { tipo: "Estrofe", texto: "1 Muitos grãos de trigo, se tornaram pão\nHoje são Teu corpo, ceia e comunhão\nMuitos grãos de trigo, se tornaram pão" },
+      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação\nPara mudá-la em fruto e missão\nToma, Senhor, nossa vida em ação\nPara mudá-la em missão." },
+      { tipo: "Estrofe", texto: "2 Muitos cachos de uva, se tornaram vinho\nHoje são teu sangue, força no caminho\nMuitos cachos de uva, se tornaram vinho" },
+      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação\nPara mudá-la em fruto e missão\nToma, Senhor, nossa vida em ação\nPara mudá-la em missão." },
+      { tipo: "Estrofe", texto: "3 Muitas são as vidas, feitas vocação\nHoje oferecidas em consagração\nMuitas são as vidas, feitas vocação" },
+      { tipo: "Refrão", texto: "Toma, Senhor, nossa vida em ação\nPara mudá-la em fruto e missão\nToma, Senhor, nossa vida em ação\nPara mudá-la em missão." },
     ]},
     { titulo: "A Mesa Santa", secoes: [
-      { tipo: "Estrofe", texto: "1. A mesa santa que preparamos,\nmãos que se elevam a Ti, ó Senhor.\nO pão e o vinho, frutos da terra,\nduro trabalho, carinho e amor." },
-      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (Bis)" },
-      { tipo: "Estrofe", texto: "2. Flores, espinhos, dor e alegria,\npais, mães e filhos diante do altar.\nA nossa oferta em nova festa,\na nossa dor vem, Senhor, transformar." },
-      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (Bis)" },
-      { tipo: "Estrofe", texto: "3. A vida nova, nova família,\nque celebramos, aqui tem lugar.\nTua bondade vem com fartura,\né só saber reunir, partilhar!" },
-      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (Bis)" },
+      { tipo: "Estrofe", texto: "1 A mesa santa que preparamos\nMãos que se elevam a Ti, ó Senhor\nO pão e o vinho, frutos da terra\nDuro trabalho, carinho e amor" },
+      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (BIS)" },
+      { tipo: "Estrofe", texto: "2 Flores, espinhos, dor e alegria\nPais, mães e filhos diante do altar\nA nossa oferta em nova festa\nA nossa dor vem, Senhor, transformar" },
+      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (BIS)" },
+      { tipo: "Estrofe", texto: "3 A vida nova, nova família\nQue celebramos, aqui tem lugar\nTua bondade vem com fartura\nÉ só saber reunir, partilhar!" },
+      { tipo: "Refrão", texto: "Oh, recebe, Senhor!\nOh, recebe, Senhor! (BIS)" },
     ]},
     { titulo: "Um Coração para Amar", secoes: [
-      { tipo: "Estrofe", texto: "1. Um coração para amar, pra perdoar e sentir,\npara chorar e sorrir, ao me criar Tu me destes.\nUm coração pra sonhar, inquieto e sempre a bater,\nansioso por entender as coisas que Tu disseste." },
-      { tipo: "Refrão", texto: "Eis o que eu venho Te dar,\neis o que eu ponho no altar.\nToma, Senhor, que ele é Teu,\nmeu coração não é meu. (Bis)" },
-      { tipo: "Estrofe", texto: "2. Quero que o meu coração seja tão cheio de paz,\nque não se sinta capaz de sentir ódio ou rancor.\nQuero que a minha oração possa me amadurecer,\nleve-me a compreender as consequências do amor." },
-      { tipo: "Refrão", texto: "Eis o que eu venho Te dar,\neis o que eu ponho no altar.\nToma, Senhor, que ele é Teu,\nmeu coração não é meu. (Bis)" },
+      { tipo: "Estrofe", texto: "1 Um coração para amar,\npra perdoar e sentir\nPara chorar e sorrir,\nao me criar Tu me destes\nUm coração pra sonhar,\ninquieto e sempre a bater\nAnsioso por entender\nas coisas que Tu disseste" },
+      { tipo: "Refrão", texto: "Eis o que eu venho Te dar\nEis o que eu ponho no altar\nToma, Senhor, que ele é Teu\nMeu coração não é meu. (BIS)" },
+      { tipo: "Estrofe", texto: "2 Quero que o meu coração\nseja tão cheio de paz\nQue não se sinta capaz\nde sentir ódio ou rancor\nQuero que a minha oração\npossa me amadurecer\nLeve-me a compreender\nas consequências do amor" },
+      { tipo: "Refrão", texto: "Eis o que eu venho Te dar\nEis o que eu ponho no altar\nToma, Senhor, que ele é Teu\nMeu coração não é meu. (BIS)" },
     ]},
     { titulo: "Os Grãos que Trago Aqui", secoes: [
-      { tipo: "Estrofe", texto: "1. Os dons que trago aqui\nsão o que fiz, o que vivi.\nO pão que ofertarei,\npouco depois comungarei.\nAssim tudo o que é meu,\nsinto também que é de Deus." },
-      { tipo: "Refrão", texto: "Esforço, trabalhos e sonhos,\no amor concreto e feliz deste dia.\nPor Cristo, com Cristo e em Cristo,\ntudo ofertamos ao Pai na alegria." },
-      { tipo: "Estrofe", texto: "2. Jesus nos quis chamar\npara o seguir e ajudar.\nE aqui nos vai dizer\ncomo servir e oferecer.\nDeus pôs nas minhas mãos\npara eu partir com meus irmãos." },
-      { tipo: "Refrão", texto: "Esforço, trabalhos e sonhos,\no amor concreto e feliz deste dia.\nPor Cristo, com Cristo e em Cristo,\ntudo ofertamos ao Pai na alegria." },
+      { tipo: "Estrofe", texto: "1 Os dons que trago aqui\nsão o que fiz, o que vivi\nO pão que ofertarei,\npouco depois comungarei\nAssim tudo o que é meu,\nsinto também que é de Deus" },
+      { tipo: "Refrão", texto: "Esforço, trabalhos e sonhos,\no amor concreto e feliz deste dia\nPor Cristo, com Cristo e em Cristo,\ntudo ofertamos ao pai na alegria" },
+      { tipo: "Estrofe", texto: "2 Jesus nos quis chamar\npara o seguir e ajudar\nE aqui nos vai dizer\ncomo servir e oferecer\nDeus pôs nas minhas mãos\npara eu partir com meus irmãos" },
+      { tipo: "Refrão", texto: "Esforço, trabalhos e sonhos,\no amor concreto e feliz deste dia\nPor Cristo, com Cristo e em Cristo,\ntudo ofertamos ao pai na alegria" },
     ]},
     { titulo: "Pão e Vinho Te Apresentamos", secoes: [
-      { tipo: "Estrofe", texto: "Pão e vinho Te apresentamos nesse altar,\ncomo sinal que Tu recolhes nossa oferta.\nTudo o que somos deixamos aqui. (Bis)" },
-      { tipo: "Refrão", texto: "É um milagre que se dá,\no pão e o vinho em corpo e sangue\nvão se transformar.\nNão há limites para o amor,\nvem transformar também minha vida,\nÓ Senhor.\nÉ Teu esse milagre de amor." },
+      { tipo: "Estrofe", texto: "Pão e vinho Te apresentamos nesse altar\nComo sinal que Tu recolhes nossa oferta\nTudo o que somos deixamos aqui. (BIS)" },
+      { tipo: "Refrão", texto: "É um milagre que se dá\nO pão e o vinho em corpo e sangue\nVão se transformar\nNão há limites para o amor\nVem transformar também\nminha vida. Ó Senhor\nÉ Teu esse milagre de amor" },
     ]},
     { titulo: "Bendito Seja Deus Pai", secoes: [
-      { tipo: "Estrofe", texto: "1. Bendito seja Deus Pai\ndo universo criador,\npelo pão que nós recebemos,\nfoi de graça e com amor." },
-      { tipo: "Refrão", texto: "O homem que trabalha\nfaz a terra produzir.\nO trabalho multiplica os dons\nque nós vamos repartir." },
-      { tipo: "Estrofe", texto: "2. Bendito seja Deus Pai\ndo universo o criador,\npelo vinho que nós recebemos,\nfoi de graça e com amor." },
-      { tipo: "Refrão", texto: "O homem que trabalha\nfaz a terra produzir.\nO trabalho multiplica os dons\nque nós vamos repartir." },
-      { tipo: "Estrofe", texto: "3. E nós participamos\nda construção do mundo novo,\ncom Deus, que jamais despreza\nnossa imensa pequenez." },
-      { tipo: "Refrão", texto: "O homem que trabalha\nfaz a terra produzir.\nO trabalho multiplica os dons\nque nós vamos repartir." },
+      { tipo: "Estrofe", texto: "1 Bendito seja Deus Pai\nDo universo criador\nPelo pão que nós recebemos\nFoi de graça e com amor" },
+      { tipo: "Refrão", texto: "O homem que trabalha\nFaz a terra produzir\nO trabalho multiplica os dons\nQue nós vamos repartir" },
+      { tipo: "Estrofe", texto: "3 Bendito seja Deus Pai\nDo universo o criador\nPelo vinho que nós recebemos\nFoi de graça e com amor" },
+      { tipo: "Refrão", texto: "O homem que trabalha\nFaz a terra produzir\nO trabalho multiplica os dons\nQue nós vamos repartir" },
+      { tipo: "Estrofe", texto: "4 E nós participamos\nDa construção do mundo novo\nCom Deus, que jamais despreza\nNossa imensa pequenez" },
+      { tipo: "Refrão", texto: "O homem que trabalha\nFaz a terra produzir\nO trabalho multiplica os dons\nQue nós vamos repartir" },
     ]},
     { titulo: "Um Consagrado para Amar", secoes: [
-      { tipo: "Estrofe", texto: "Venho, Senhor, me ofertar,\na minha vida consagrar.\nQuero renovar o meu sim,\nque Tua vontade se faça em mim.\nRenova, Senhor, minha vocação. (Bis)" },
-      { tipo: "Refrão", texto: "Um consagrado para amar,\num consagrado pra se doar.\nUm amor que tudo suporta,\num amor que não dá pra improvisar.\nUm consagrado para amar,\num consagrado pra se doar.\nUm amor que não busca interesses seus,\né o mais puro amor, o amor de Deus." },
+      { tipo: "Estrofe", texto: "Venho, Senhor, me ofertar\nA minha vida consagrar\nQuero renovar o meu sim\nQue Tua vontade se faça em mim\nRenova, Senhor, minha vocação. (BIS)" },
+      { tipo: "Refrão", texto: "Um consagrado para amar\nUm consagrado pra se doar\nUm amor que tudo suporta\nUm amor que não dá pra improvisar." },
+      { tipo: "Refrão", texto: "Um consagrado para amar\nUm consagrado pra se doar\nUm amor que não busca interesses seus\nÉ o mais puro amor, o amor de Deus" },
     ]},
     { titulo: "Sabes, Senhor, o que Temos É Tão Pouco", secoes: [
-      { tipo: "Refrão", texto: "Sabes, Senhor,\no que temos é tão pouco pra dar.\nMas este pouco\nnós queremos com os irmãos compartilhar." },
-      { tipo: "Estrofe", texto: "1. Queremos nesta hora,\ndiante dos irmãos,\ncomprometer a vida,\nbuscando a união." },
-      { tipo: "Refrão", texto: "Sabes, Senhor,\no que temos é tão pouco pra dar.\nMas este pouco\nnós queremos com os irmãos compartilhar." },
-      { tipo: "Estrofe", texto: "2. Sabemos que é difícil\nos bens compartilhar,\nmas com a tua graça,\nSenhor, podemos dar." },
-      { tipo: "Refrão", texto: "Sabes, Senhor,\no que temos é tão pouco pra dar.\nMas este pouco\nnós queremos com os irmãos compartilhar." },
-      { tipo: "Estrofe", texto: "3. Olhando o teu exemplo,\nSenhor, vamos seguir,\nfazendo o bem aos homens,\nsem nada exigir." },
-      { tipo: "Refrão", texto: "Sabes, Senhor,\no que temos é tão pouco pra dar.\nMas este pouco\nnós queremos com os irmãos compartilhar." },
+      { tipo: "Refrão", texto: "Sabes, Senhor o que temos\né tão pouco pra dar\nMas este pouco\nNós queremos com os irmãos\ncompartilhar" },
+      { tipo: "Estrofe", texto: "1 Queremos nesta hora\nDiante dos irmãos\nComprometer a vida\nBuscando a união" },
+      { tipo: "Refrão", texto: "Sabes, Senhor o que temos\né tão pouco pra dar\nMas este pouco\nNós queremos com os irmãos\ncompartilhar" },
+      { tipo: "Estrofe", texto: "2 Sabemos que é difícil\nOs bens compartilhar\nMas com a tua graça\nSenhor, podemos dar" },
+      { tipo: "Refrão", texto: "Sabes, Senhor o que temos\né tão pouco pra dar\nMas este pouco\nNós queremos com os irmãos\ncompartilhar" },
+      { tipo: "Estrofe", texto: "3 Olhando o teu exemplo\nSenhor, vamos seguir\nFazendo o bem aos homens\nSem nada exigir" },
+      { tipo: "Refrão", texto: "Sabes, Senhor o que temos\né tão pouco pra dar\nMas este pouco\nNós queremos com os irmãos\ncompartilhar" },
+    ]},
+  ],
+
+  santo: [
+    { titulo: "Santo III", secoes: [
+      { tipo: "Única", texto: "Santo, Santo, Santo.\nSenhor Deus do universo.\nO céu e a terra\nproclamam a vossa glória.\nHosana nas alturas." },
+      { tipo: "Única", texto: "Bendito o que vem\nem nome do Senhor.\nHosana, nas alturas." },
+    ]},
+    { titulo: "Santo - Hosana nas Alturas", secoes: [
+      { tipo: "Única", texto: "Santo, Santo, Santo.\nSenhor Deus do universo.\nO céu e a terra proclamam\na vossa glória.\nHosana nas alturas.\nHosana! (Bis)" },
+      { tipo: "Única", texto: "Bendito Aquele que vem\nem nome do Senhor. (Bis)" },
+    ]},
+    { titulo: "Santo (I) - Pe. Ney Brasil", secoes: [
+      { tipo: "Única", texto: "Santo, Santo,\nSanto sois Senhor,\nSanto, Santo, Santo\nsois Senhor Nosso Deus.\nSenhor Deus do universo.\nO céu e a terra\nproclamam a vossa glória.\nHosana nas alturas." },
+      { tipo: "Única", texto: "Santo, Santo,\nSanto Sois Senhor,\nSanto, Santo, Santo\nSois Senhor Nosso Deus.\nBendito o que vem\nem nome do Senhor.\nHosana nas alturas,\nhosana nas alturas." },
+    ]},
+    { titulo: "Santo - Pedro Ivan", secoes: [
+      { tipo: "Única", texto: "Santo, Santo, Santo.\nSenhor Deus do universo.\nO céu e a terra\nproclamam a vossa glória.\nHosana nas alturas." },
+      { tipo: "Única", texto: "Bendito o que vem\nem nome do Senhor.\nHosana, nas alturas." },
+    ]},
+    { titulo: "O Senhor é Santo", secoes: [
+      { tipo: "Única", texto: "O Senhor é Santo!\nO Senhor é Santo!\nO Senhor é Santo!\nSenhor Deus do universo.\nO céu e a terra\nproclamam a vossa glória.\nHosana nas alturas." },
+      { tipo: "Única", texto: "O Senhor é Santo!\nO Senhor é Santo!\nO Senhor é Santo!\nBendito o que vem\nem nome do Senhor.\nBendito o que vem\nem nome do Senhor.\nHosana! Hosana!\nHosana! Hosana!" },
+    ]},
+    { titulo: "Santo - Padre Cleidimar Moreira", secoes: [
+      { tipo: "Única", texto: "Santo, Santo,\nSanto é o Senhor.\nDeus do universo. (Bis)\nOs céus e a terra\nproclamam a vossa glória.\nHosana nas alturas.\nHosana nas alturas. (Bis)" },
+      { tipo: "Única", texto: "Santo, Santo,\nSanto é o Senhor.\nDeus do universo. (Bis)\nBendito o que vem\nem nome do Senhor.\nHosana, nas alturas.\nHosana nas alturas. (Bis)" },
+    ]},
+    { titulo: "Santo, Santo, Santo é o Senhor", secoes: [
+      { tipo: "Única", texto: "Santo, Santo,\nSanto é o Senhor,\nDeus do universo,\ndo céu e a terra. (Bis)\nHosana! Hosana!\nHosana! nas alturas. (Bis)" },
+      { tipo: "Única", texto: "Bendito o que vem\nem nome do Senhor.\nHosana, nas alturas. (Bis)" },
+    ]},
+  ],
+
+  cordeiro: [
+    { titulo: "Cordeiro de Deus (1)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz." },
+    ]},
+    { titulo: "Cordeiro de Deus (2)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz, dai-nos a paz." },
+    ]},
+    { titulo: "Cordeiro de Deus (3)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo," },
+      { tipo: "Refrão", texto: "dai-nos a paz, dai-nos a paz,\ndai-nos a vossa paz,\ndai-nos a paz. (bis)" },
+    ]},
+    { titulo: "Cordeiro de Deus (4)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz." },
+    ]},
+    { titulo: "Cordeiro de Deus (5)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz, dai-nos a paz,\ndai-nos a vossa paz." },
+    ]},
+    { titulo: "Cordeiro de Deus (6)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade, piedade de nós.\n2 Cordeiro de Deus,\nQue tirais o pecado do mundo,\ntende piedade, piedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz, a vossa paz." },
+    ]},
+    { titulo: "Cordeiro de Deus (7)", secoes: [
+      { tipo: "Única", texto: "1 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade, tende piedade,\npiedade de nós.\n2 Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade, tende piedade,\npiedade de nós.\n3 Cordeiro de Deus,\nque tirais o pecado do mundo,\ndai-nos a paz." },
     ]},
   ],
 
   comunhao: [
     { titulo: "Ó Meu Deus Sois o Rochedo que Me Abriga", secoes: [
-      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo que me abriga,\nminha força e poderosa salvação.\nSois meu escudo e proteção, em vós espero." },
-      { tipo: "Estrofe", texto: "1. Eu vos amo ó Senhor, Sois minha força,\nminha rocha, meu refúgio e Salvador." },
-      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo que me abriga,\nminha força e poderosa salvação.\nSois meu escudo e proteção, em vós espero." },
-      { tipo: "Estrofe", texto: "2. Invocarei o meu Senhor, a ele a glória,\ne dos meus perseguidores serei salvo." },
-      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo que me abriga,\nminha força e poderosa salvação.\nSois meu escudo e proteção, em vós espero." },
-      { tipo: "Estrofe", texto: "3. Ao Senhor eu invoquei na minha angústia\ne elevei o meu clamor para o meu Deus." },
-      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo que me abriga,\nminha força e poderosa salvação.\nSois meu escudo e proteção, em vós espero." },
-      { tipo: "Estrofe", texto: "4. De seu Templo ele escutou a minha voz\ne chegou a seus ouvidos o meu grito." },
-      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo que me abriga,\nminha força e poderosa salvação.\nSois meu escudo e proteção, em vós espero." },
+      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo\nque me abriga, minha força\ne poderosa salvação\nsois meu escudo e proteção\nem vós espero" },
+      { tipo: "Estrofe", texto: "1 Eu vos amo ó Senhor Sois minha força\nminha rocha meu refúgio e Salvador" },
+      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo\nque me abriga, minha força\ne poderosa salvação\nsois meu escudo e proteção\nem vós espero" },
+      { tipo: "Estrofe", texto: "2 Invocarei o meu Senhor a ele a glória\ne dos meus perseguidores serei salvo" },
+      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo\nque me abriga, minha força\ne poderosa salvação\nsois meu escudo e proteção\nem vós espero" },
+      { tipo: "Estrofe", texto: "3 Ao Senhor eu invoquei na minha angústia\ne elevei o meu clamor para o meu Deus" },
+      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo\nque me abriga, minha força\ne poderosa salvação\nsois meu escudo e proteção\nem vós espero" },
+      { tipo: "Estrofe", texto: "4 De seu Templo ele escutou a minha voz\ne chegou a seus ouvidos o meu grito" },
+      { tipo: "Refrão", texto: "Ó meu Deus sois o rochedo\nque me abriga, minha força\ne poderosa salvação\nsois meu escudo e proteção\nem vós espero" },
     ]},
     { titulo: "Ó Senhor, aos Doentes Vieste", secoes: [
       { tipo: "Refrão", texto: "Ó Senhor, aos doentes vieste,\npecadores, com eles sentaste.\nO Teu Corpo e Teu Sangue lhes deste,\naos famintos Tu alimentaste." },
-      { tipo: "Estrofe", texto: "1. Um canto novo ao Senhor,\nó terras todas, cantai!\nLouvai Seu Nome bendito,\ndiariamente aclamai!\nSua glória, Seus grandes feitos\naos povos todos contai." },
+      { tipo: "Estrofe", texto: "1 Um canto novo ao Senhor,\nÓ terras todas, cantai!\nLouvai Seu Nome bendito\ndiariamente aclamai!\nSua glória, Seus grandes feitos\naos povos todos contai." },
       { tipo: "Refrão", texto: "Ó Senhor, aos doentes vieste,\npecadores, com eles sentaste.\nO Teu Corpo e Teu Sangue lhes deste,\naos famintos Tu alimentaste." },
-      { tipo: "Estrofe", texto: "2. Ele é o maior dos senhores,\nmerece nosso louvor;\ne mais do que aos deuses todos,\nnós lhe devemos temor.\nOs outros deuses são nada,\nEle é, do céu, Criador." },
+      { tipo: "Estrofe", texto: "2 Ele é o maior dos senhores:\nMerece nosso louvor;\nE mais do que aos deuses\ntodos Nós lhe devemos temor.\nOs outros deuses são nada,\nEle é, do céu, Criador." },
       { tipo: "Refrão", texto: "Ó Senhor, aos doentes vieste,\npecadores, com eles sentaste.\nO Teu Corpo e Teu Sangue lhes deste,\naos famintos Tu alimentaste." },
-      { tipo: "Estrofe", texto: "3. Sabei que o Senhor é Rei\ne traz justiça a esta terra.\nAlegrem-se o mar e os peixes\ne tudo o que o mundo encerra.\nOs campos, plantas, montanhas\ne as árvores da floresta." },
+      { tipo: "Estrofe", texto: "3 Sabei que o Senhor é Rei\ne traz justiça a esta terra.\nAlegrem-se o mar e os peixes\ne tudo o que o mundo encerra.\nOs campos, plantas, montanhas\ne as árvores da floresta." },
+      { tipo: "Refrão", texto: "Ó Senhor, aos doentes vieste,\npecadores, com eles sentaste.\nO Teu Corpo e Teu Sangue lhes deste,\naos famintos Tu alimentaste." },
+      { tipo: "Estrofe", texto: "4 Ele é o Senhor do universo\ne faz justiça a seu povo.\nAos povos há de julgar,\nreinando no mundo todo.\nPor isso, a Ele cantai,\nó terras, um canto novo!" },
       { tipo: "Refrão", texto: "Ó Senhor, aos doentes vieste,\npecadores, com eles sentaste.\nO Teu Corpo e Teu Sangue lhes deste,\naos famintos Tu alimentaste." },
     ]},
     { titulo: "Senhor Tu Vieste Mostrar aos Errados", secoes: [
@@ -1593,192 +1774,201 @@ const bancoDecimo = {
       { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
       { tipo: "Estrofe", texto: "4. Santos todos, adorem o Senhor,\naos que o amam, nenhum mal assalta.\nQuem é rico, empobrece e tem fome,\nmas, a quem busca a Deus, nada falta." },
       { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "5. Ó meus filhos, escutem o que eu digo,\npra aprender o temor do Senhor.\nQual o homem que ama sua vida,\ne a seus dias quer dar mais valor?" },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "6. Tua língua preserva do mal\ne não deixes tua boca mentir.\nAma o bem e detesta a maldade,\nvem a paz procurar e seguir!" },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "7. Sobre o justo o Senhor olha sempre,\nseu ouvido se põe a escutar.\nQue teus olhos se afastem dos maus,\npois, ninguém deles vai se lembrar." },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "8. Deus ouviu, quando os justos chamaram\ne livrou-os de sua aflição.\nEstá perto de quem se arrepende,\nao pequeno ele dá salvação." },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "9. Para o justo há momentos amargos,\nmas vem Deus pra lhe dar proteção.\nEle guarda com amor os seus ossos,\nnenhum deles terá perdição." },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
+      { tipo: "Estrofe", texto: "10. A malícia do ímpio o liquida,\nquem persegue o inocente é arrasado.\nO Senhor a seus servos liberta,\nquem o abraça, não é castigado." },
+      { tipo: "Refrão", texto: "Senhor, tu vieste mostrar aos errados\nde novo, o caminho da casa do Pai.\nTu deste teu corpo, tu deste teu sangue,\npra ser o sustento do Filho que cai." },
     ]},
   ],
 
   final: [
     { titulo: "A Escolhida", secoes: [
-      { tipo: "Estrofe", texto: "1. Uma entre todas foi a escolhida,\nfoste tu, Maria, serva preferida,\nMãe do meu Senhor,\nMãe do meu Salvador." },
-      { tipo: "Refrão", texto: "Maria, cheia de graça e consolo,\nvenha caminhar com teu povo.\nNossa Mãe sempre serás.\nMaria, cheia de graça e consolo,\nvenha caminhar com teu povo.\nNossa Mãe sempre serás." },
-      { tipo: "Estrofe", texto: "2. Roga pelos pecadores desta Terra,\nroga pelo povo que em seu Deus espera,\nMãe do meu Senhor,\nMãe do meu Salvador." },
-      { tipo: "Refrão", texto: "Maria, cheia de graça e consolo,\nvenha caminhar com teu povo.\nNossa Mãe sempre serás.\nMaria, cheia de graça e consolo,\nvenha caminhar com teu povo.\nNossa Mãe sempre serás." },
+      { tipo: "Estrofe", texto: "1 Uma entre todas foi a escolhida\nFoste tu, Maria, serva preferida\nMãe do meu Senhor\nMãe do meu Salvador" },
+      { tipo: "Refrão", texto: "Maria, cheia de graça e consolo\nVenha caminhar com teu povo\nNossa Mãe sempre serás\nMaria, cheia de graça e consolo\nVenha caminhar com teu povo\nNossa Mãe sempre serás" },
+      { tipo: "Estrofe", texto: "2 Roga pelos pecadores desta Terra\nRoga pelo povo que em seu Deus espera\nMãe do meu Senhor\nMãe do meu Salvador" },
+      { tipo: "Refrão", texto: "Maria, cheia de graça e consolo\nVenha caminhar com teu povo\nNossa Mãe sempre serás\nMaria, cheia de graça e consolo\nVenha caminhar com teu povo\nNossa Mãe sempre serás" },
     ]},
     { titulo: "Pelas Estradas da Vida", secoes: [
-      { tipo: "Estrofe", texto: "1. Pelas estradas da vida,\nnunca sozinho estás.\nContigo pelo caminho,\nSanta Maria vai." },
-      { tipo: "Refrão", texto: "Ó, vem conosco, vem caminhar,\nSanta Maria vem.\nÓ, vem conosco, vem caminhar,\nSanta Maria vem." },
-      { tipo: "Estrofe", texto: "2. Mesmo que digam os homens\ntu nada podes mudar,\nluta por um mundo novo\nde unidade e paz." },
-      { tipo: "Refrão", texto: "Ó, vem conosco, vem caminhar,\nSanta Maria vem.\nÓ, vem conosco, vem caminhar,\nSanta Maria vem." },
+      { tipo: "Estrofe", texto: "1 Pelas estradas da vida,\nnunca sozinho estás\nContigo pelo caminho,\nSanta Maria vai" },
+      { tipo: "Refrão", texto: "Ó, vem conosco, vem caminhar\nSanta Maria vem\nÓ, vem conosco, vem caminhar\nSanta Maria vem" },
+      { tipo: "Estrofe", texto: "2 Mesmo que digam os homens\nTu nada podes mudar\nLuta por um mundo novo\nDe unidade e paz" },
+      { tipo: "Refrão", texto: "Ó, vem conosco, vem caminhar\nSanta Maria vem\nÓ, vem conosco, vem caminhar\nSanta Maria vem" },
     ]},
     { titulo: "Quem É Essa que Avança", secoes: [
-      { tipo: "Estrofe", texto: "Quem é esta que avança como aurora,\ntemível como exército em ordem de batalha,\nbrilhante como o Sol e como a Lua,\nmostrando o caminho aos filhos seus." },
-      { tipo: "Refrão", texto: "Ah, ah, ah, minha alma glorifica ao Senhor,\nmeu espírito exulta em Deus, meu Salvador." },
+      { tipo: "Estrofe", texto: "Quem é esta que avança como aurora\nTemível como exército\nem ordem de batalha\nBrilhante como o Sol e como a Lua\nMostrando o caminho aos filhos seus" },
+      { tipo: "Refrão", texto: "Ah, ah, ah, minha alma\nglorifica ao Senhor\nMeu espírito exulta\nem Deus, meu Salvador" },
     ]},
     { titulo: "Quando Jesus Passar", secoes: [
-      { tipo: "Refrão", texto: "Quando Jesus passar,\nquando Jesus passar,\nquando Jesus passar,\neu quero estar no meu lugar." },
-      { tipo: "Estrofe", texto: "1. No meu telônio ou jogando a rede,\nsob a figueira ou a caminhar,\nbuscando água pra minha sede,\nquerendo ver meu Senhor passar." },
-      { tipo: "Refrão", texto: "Quando Jesus passar,\nquando Jesus passar,\nquando Jesus passar,\neu quero estar no meu lugar." },
-      { tipo: "Estrofe", texto: "2. No meu trabalho e na minha casa,\nno meu estudo e no meu lazer,\nno compromisso e no meu descanso,\nno meu direito e no meu dever." },
-      { tipo: "Refrão", texto: "Quando Jesus passar,\nquando Jesus passar,\nquando Jesus passar,\neu quero estar no meu lugar." },
+      { tipo: "Refrão", texto: "Quando Jesus passar\nQuando Jesus passar\nQuando Jesus passar\nEu quero estar no meu lugar" },
+      { tipo: "Estrofe", texto: "1 No meu telônio ou jogando a rede\nSob a figueira ou a caminhar\nBuscando água pra minha sede\nQuerendo ver meu Senhor passar" },
+      { tipo: "Refrão", texto: "Quando Jesus passar\nQuando Jesus passar\nQuando Jesus passar\nEu quero estar no meu lugar" },
+      { tipo: "Estrofe", texto: "2 No meu trabalho e na minha casa\nNo meu estudo e no meu lazer\nNo compromisso e no meu descanso\nNo meu direito e no meu dever" },
+      { tipo: "Refrão", texto: "Quando Jesus passar\nQuando Jesus passar\nQuando Jesus passar\nEu quero estar no meu lugar" },
     ]},
     { titulo: "Ensina o Teu Povo a Rezar", secoes: [
-      { tipo: "Estrofe", texto: "1. Ensina o teu povo a rezar,\nMaria, mãe de Jesus.\nQue um dia o teu povo desperta\ne na certa vai ver a luz.\nQue um dia o teu povo se anima\ne caminha com teu Jesus." },
-      { tipo: "Estrofe", texto: "2. Maria de Jesus Cristo,\nMaria de Deus, Maria mulher.\nQue um dia o teu povo se anima\ne caminha com teu Jesus.\nQue um dia o teu povo se anima\ne caminha com teu Jesus." },
-      { tipo: "Estrofe", texto: "3. Maria senhora nossa,\nMaria do povo, povo de Deus.\nEnsina o teu jeito perfeito\nde sempre escutar teu Deus.\nEnsina o teu jeito perfeito\nde sempre escutar teu Deus." },
+      { tipo: "Estrofe", texto: "1 Ensina o teu povo a rezar,\nMaria, mãe de Jesus\nQue um dia o teu povo desperta\ne na certa vai ver a luz\nQue um dia o teu povo\nse anima e caminha com teu Jesus" },
+      { tipo: "Estrofe", texto: "2 Maria de Jesus Cristo,\nMaria de Deus, Maria mulher\nQue um dia o teu povo se anima\ne caminha com teu Jesus\nQue um dia o teu povo se anima\ne caminha com teu Jesus" },
+      { tipo: "Estrofe", texto: "3 Maria senhora nossa,\nMaria do povo, povo de Deus\nEnsina o teu jeito perfeito\nde sempre escutar teu Deus\nEnsina o teu jeito perfeito\nde sempre escutar teu Deus" },
     ]},
     { titulo: "Tomado pela Mão", secoes: [
-      { tipo: "Refrão", texto: "Tomado pela mão com Jesus eu vou,\nsigo-o como ovelha que encontrou o pastor. (Bis)\nTomado pela mão com Jesus eu vou\naonde ele for. (Bis)" },
-      { tipo: "Estrofe", texto: "1. Se Jesus me diz:\n\"Amigo, deixa tudo e vem comigo,\nonde tudo é mais formoso e mais feliz\". (Bis)" },
-      { tipo: "Refrão", texto: "Tomado pela mão com Jesus eu vou,\nsigo-o como ovelha que encontrou o pastor. (Bis)\nTomado pela mão com Jesus eu vou\naonde ele for. (Bis)" },
-      { tipo: "Estrofe", texto: "2. \"Eu te levarei amigo\na um lugar comigo,\nonde o sol e as estrelas brilham mais\". (Bis)" },
-      { tipo: "Refrão", texto: "Tomado pela mão com Jesus eu vou,\nsigo-o como ovelha que encontrou o pastor. (Bis)\nTomado pela mão com Jesus eu vou\naonde ele for. (Bis)" },
+      { tipo: "Refrão", texto: "Tomado pela mão\ncom jesus eu vou,\nSigo-o como ovelha\nque encontrou o pastor.\nTomado pela mão\ncom jesus eu vou\naonde ele for. (bis)" },
+      { tipo: "Estrofe", texto: "1 Se jesus me diz: \"amigo,\ndeixa tudo e vem comigo\nOnde tudo é mais formoso\ne mais feliz\". (bis)" },
+      { tipo: "Refrão", texto: "Tomado pela mão\ncom jesus eu vou,\nSigo-o como ovelha\nque encontrou o pastor.\nTomado pela mão\ncom jesus eu vou\naonde ele for. (bis)" },
+      { tipo: "Estrofe", texto: "2 \"eu te levarei amigo\na um lugar comigo\nOnde o sol e as estrelas\nbrilham mais\". (bis)" },
+      { tipo: "Refrão", texto: "Tomado pela mão\ncom jesus eu vou,\nSigo-o como ovelha\nque encontrou o pastor.\nTomado pela mão\ncom jesus eu vou\naonde ele for. (bis)" },
     ]},
   ],
 };
 
-// Leituras fixas — 10º Domingo do Tempo Comum
+// Leituras fixas — exatamente como no documento Word
 const slidesFixosDecimo = {
   primeiraLeitura: ["Oséias 6,3-6"],
-  salmo: ["A todo homem que procede retamente,\neu mostrarei a salvação que vem de Deus."],
+  salmo: ["A todo homem que procede\nretamente, eu mostrarei\na salvação que vem de Deus."],
   segundaLeitura: ["Romanos 4,18-25"],
   evangelho: ["Mateus 9,9-13"],
-  preces: ["Salvai, Senhor, o Vosso Povo!"],
+  preces: ["R. Salvai, Senhor,\no Vosso Povo!"],
 };
 
-// 6 Orações Eucarísticas com Mistério da Fé
+// 6 Orações Eucarísticas — exatamente como no documento Word
 const oracoesEucaristicas = {
   1: {
-    nome: "Oração Eucarística I",
     antesDoSanto: [],
     aposDoSanto: [
-      "Abençoai nossa oferenda, ó Senhor!",
-      "Lembrai-vos, ó Pai, de vossos filhos!",
-      "Em comunhão com os vossos Santos\nvos louvamos!",
-      "Enviai o vosso Espírito Santo!",
+      "Abençoai nossa\noferenda, ó Senhor!",
+      "Lembrai-vos, ó Pai,\nde vossos filhos!",
+      "Em comunhão com os vossos\nSantos vos louvamos!",
+      "Enviai o vosso\nEspírito Santo!",
     ],
     aposDoMisterio: [
-      "Aceitai, ó Senhor, a nossa oferta!",
-      "O Espírito nos una num só corpo!",
-      "Concedei-lhes, ó Senhor, a luz eterna!",
+      "Aceitai, ó Senhor,\na nossa oferta!",
+      "O Espírito nos una\nnum só corpo!",
+      "Concedei-lhes,\nó Senhor, a luz eterna!",
     ]
   },
   2: {
-    nome: "Oração Eucarística II",
     antesDoSanto: [],
     aposDoSanto: [
-      "Enviai o Vosso Espírito Santo!",
+      "Enviai o Vosso\nEspírito Santo!",
     ],
     aposDoMisterio: [
-      "Aceitai, ó Senhor, a nossa oferta!",
-      "O Espírito nos una num só corpo!",
-      "Lembrai-vos, ó Pai, da vossa Igreja!",
-      "Concedei-lhes, ó Senhor, a luz eterna!",
+      "Aceitai, ó Senhor,\na nossa oferta!",
+      "O Espírito nos una\nnum só corpo!",
+      "Lembrai-vos, ó Pai,\nda vossa Igreja!",
+      "Concedei-lhes,\nó Senhor, a luz eterna!",
     ]
   },
   3: {
-    nome: "Oração Eucarística III",
     antesDoSanto: [],
     aposDoSanto: [
-      "Enviai o vosso Espírito Santo!",
+      "Enviai o vosso\nEspírito Santo!",
     ],
     aposDoMisterio: [
-      "Aceitai, ó Senhor, a nossa oferta!",
-      "O Espírito nos una num só corpo!",
-      "Fazei de nós um perfeita oferenda!",
-      "Lembrai-vos, ó Pai, da vossa Igreja!",
+      "Aceitai, ó Senhor,\na nossa oferta!",
+      "O Espírito nos\nuna num só corpo!",
+      "Fazei de nós uma\nperfeita oferenda!",
+      "Lembrai-vos,\nó Pai, da vossa Igreja!",
     ]
   },
   4: {
-    nome: "Oração Eucarística IV",
     antesDoSanto: [
-      "Alegrai-nos, ó Pai, com a vossa luz!",
+      "Alegrai-nos, ó Pai,\ncom a vossa luz!",
     ],
     aposDoSanto: [
-      "Socorrei, com bondade, os que vos buscam!",
-      "Por amor nos enviastes vosso Filho!",
-      "Jesus Cristo deu-nos vida por sua morte!",
-      "Santificai-nos pelo dom do vosso Espírito!",
-      "Santificai nossa oferenda pelo Espírito.",
+      "Socorrei, com bondade,\nos que vos buscam!",
+      "Por amor nos\nenviastes vosso Filho!",
+      "Jesus Cristo deu-nos\nvida por sua morte!",
+      "Santificai-nos pelo\ndom do vosso Espírito!",
+      "Santificai nossa\noferenda pelo Espírito.",
     ],
     aposDoMisterio: [
-      "Recebei, ó Senhor, a nossa oferta!",
-      "Fazei de nós um sacrifício de louvor!",
-      "Lembrai-vos, ó Pai, dos vossos filhos!",
-      "A todos saciai com vossa glória!",
-      "Concedei-nos o convívio dos eleitos!",
+      "Recebei, ó Senhor,\na nossa oferta!",
+      "Fazei de nós um\nsacrifício de louvor!",
+      "Lembrai-vos, ó Pai,\ndos vossos filhos!",
+      "A todos saciai\ncom vossa glória!",
+      "Concedei-nos\no convívio dos eleitos!",
     ]
   },
   5: {
-    nome: "Oração Eucarística V",
     antesDoSanto: [],
     aposDoSanto: [
-      "Mandai vosso Espírito Santo!",
+      "Mandai vosso\nEspírito Santo!",
     ],
     aposDoMisterio: [
-      "Recebei, ó Senhor, a nossa oferta!",
-      "O Espírito nos uma num só corpo!",
-      "Caminhamos na estrada de Jesus!",
-      "Lembrai-vos, ó Pai, da vossa Igreja!",
-      "Esperamos entrar na vida eterna!",
-      "A todos dai a luz que não se apaga!",
+      "Recebei, ó Senhor,\na nossa oferta!",
+      "O Espírito nos\nuna num só corpo!",
+      "Caminhamos\nna estrada de Jesus!",
+      "Lembrai-vos, ó Pai,\nda vossa Igreja!",
+      "Esperamos entrar\nna vida eterna!",
+      "A todos dai a luz\nque não se apaga!",
     ]
   },
   6: {
-    nome: "Oração Eucarística VI",
     antesDoSanto: [],
     aposDoSanto: [
-      "O vosso Filho permaneça entre nós!",
-      "Mandai o vosso Espírito Santo!",
+      "O vosso Filho\npermaneça entre nós!",
+      "Mandai o vosso\nEspírito Santo!",
     ],
     aposDoMisterio: [
-      "Aceitai, ó Senhor, a nossa oferta!",
-      "Confirmai na caridade o vosso povo!",
-      "Concedei-lhes, ó Senhor, a luz eterna!",
+      "Aceitai, ó Senhor,\na nossa oferta!",
+      "Confirmai na caridade\no vosso povo!",
+      "Concedei-lhes,\nó Senhor, a luz eterna!",
     ]
   },
 };
 
 const misteriosDaFe = {
-  1: "Anunciamos, Senhor, a vossa morte\ne proclamamos a vossa ressurreição.\nVinde, Senhor Jesus!",
-  2: "Todas as vezes que comemos deste pão\ne bebemos deste cálice,\nanunciamos, Senhor, a vossa morte,\nenquanto esperamos a vossa vinda!",
-  3: "Salvador do mundo, salvai-nos,\nvós que nos libertastes\npela cruz e ressurreição.",
+  1: "Anunciamos, Senhor,\na vossa morte e proclamamos\na vossa ressurreição.\nVinde, Senhor Jesus!",
+  2: "Todas as vezes que comemos\ndeste pão e bebemos deste cálice,\nanunciamos, Senhor, a vossa morte,\nenquanto esperamos a vossa vinda!",
+  3: "Salvador do mundo,\nsalvai-nos,\nvós que nos libertastes\npela cruz e ressurreição.",
 };
 
-function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, addSlideCapa, renderMusica, banco, bancoTrindade) {
-  const pres = new (require("pptxgenjs"))();
+function gerarMissaDecimo(opcoes, _1, _2, _3, _4, _5, _6, bancoTrindade) {
+  const pres = new pptxgen();
   pres.layout = "LAYOUT_4x3";
   pres.title = "LiturgiaPlay — 10º Domingo do Tempo Comum";
 
   const FONTE = "Arial";
   const COR_TEXTO = "000000";
-  const MAX_LINHAS = 6;
-  const FONT_MIN = 36;
+  const FONT_MIN = 28;
 
   function calcFonte(linhas) {
     const n = linhas.length;
     const maxChars = Math.max(...linhas.map(l => l.length));
-    let fs = n <= 2 ? 54 : n <= 3 ? 48 : n <= 4 ? 44 : n <= 5 ? 40 : 38;
-    if (maxChars > 30) fs = Math.min(fs, 44);
-    if (maxChars > 38) fs = Math.min(fs, 40);
-    if (maxChars > 48) fs = Math.min(fs, 38);
-    if (maxChars > 56) fs = Math.min(fs, 36);
+    // Base pela quantidade de linhas
+    let fs = n <= 2 ? 54 : n <= 3 ? 48 : n <= 4 ? 44 : n <= 5 ? 40 : n <= 6 ? 36 : n <= 7 ? 32 : 28;
+    // Ajuste pelo comprimento das linhas — mais conservador para evitar quebras
+    if (maxChars > 28) fs = Math.min(fs, 40);
+    if (maxChars > 32) fs = Math.min(fs, 36);
+    if (maxChars > 38) fs = Math.min(fs, 34);
+    if (maxChars > 44) fs = Math.min(fs, 32);
+    if (maxChars > 52) fs = Math.min(fs, 28);
+    if (maxChars > 60) fs = Math.min(fs, 24);
     return Math.max(fs, FONT_MIN);
   }
 
   function addTexto(texto, negrito) {
     const linhas = texto.split("\n");
-    for (let i = 0; i < linhas.length; i += MAX_LINHAS) {
-      const bloco = linhas.slice(i, i + MAX_LINHAS);
-      const slide = pres.addSlide();
-      slide.background = { color: "FFFFFF" };
-      const fs = calcFonte(bloco);
-      slide.addText(bloco.map((l, idx) => ({ text: l, options: { breakLine: idx < bloco.length - 1, bold: negrito } })), {
-        x: 0.3, y: 0.2, w: 9.4, h: 7.1, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.2
-      });
-    }
+    // Sem MAX_LINHAS — coloca tudo em um único slide diminuindo a fonte
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, idx) => ({ text: l, options: { breakLine: idx < linhas.length - 1, bold: negrito } })),
+      { x: 0.3, y: 0.2, w: 9.4, h: 7.1, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.2 }
+    );
   }
 
   function addPreto() {
-    const s = pres.addSlide(); s.background = { color: "000000" };
+    const s = pres.addSlide();
+    s.background = { color: "000000" };
   }
 
   function addFixo(titulo, linhas) {
@@ -1786,11 +1976,11 @@ function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, ad
     slide.background = { color: "FFFFFF" };
     slide.addText(titulo, { x: 0.3, y: 0.2, w: 9.4, h: 0.7, fontSize: 22, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "left", valign: "top" });
     slide.addShape("rect", { x: 0.3, y: 0.95, w: 9.4, h: 0.03, fill: { color: "CCCCCC" }, line: { color: "CCCCCC" } });
-    const n = linhas.length;
-    const fs = n <= 1 ? 48 : n <= 2 ? 44 : n <= 3 ? 40 : n <= 4 ? 36 : 32;
-    slide.addText(linhas.map((l, i) => ({ text: l, options: { breakLine: i < linhas.length - 1, bold: false } })), {
-      x: 0.3, y: 1.1, w: 9.4, h: 6.3, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.3
-    });
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, i) => ({ text: l, options: { breakLine: i < linhas.length - 1, bold: false } })),
+      { x: 0.3, y: 1.1, w: 9.4, h: 6.3, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.3 }
+    );
   }
 
   function renderMus(musica) {
@@ -1800,22 +1990,16 @@ function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, ad
     });
   }
 
-  // CAPA
-  const capSlide = pres.addSlide();
-  capSlide.background = { color: "FFFFFF" };
-  capSlide.addText("10º Domingo do Tempo Comum — 07 de junho de 2026", { x: 1.0, y: 1.8, w: 8, h: 0.5, fontSize: 18, color: "888888", fontFace: FONTE, align: "center" });
-  capSlide.addText("10º Domingo\ndo Tempo Comum", { x: 1.0, y: 2.4, w: 8, h: 2.5, fontSize: 48, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle" });
-
   // ORAÇÃO EUCARÍSTICA selecionada
   const oeNum = opcoes.oracao_eucaristica || 1;
   const misterioNum = opcoes.misterio_fe || 1;
   const oe = oracoesEucaristicas[oeNum];
 
-  // Respostas antes do Santo (Oração IV)
-  if (oe.antesDoSanto.length > 0) {
-    oe.antesDoSanto.forEach(r => addTexto(r, true));
-    addPreto();
-  }
+  // CAPA
+  const capSlide = pres.addSlide();
+  capSlide.background = { color: "FFFFFF" };
+  capSlide.addText("10º Domingo do Tempo Comum — 07 de junho de 2026", { x: 1.0, y: 1.8, w: 8, h: 0.5, fontSize: 18, color: "888888", fontFace: FONTE, align: "center" });
+  capSlide.addText("10º Domingo\ndo Tempo Comum", { x: 1.0, y: 2.4, w: 8, h: 2.5, fontSize: 48, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle" });
 
   // ENTRADA
   const entrada = bancoDecimo.cantos_entrada.find(c => c.titulo === opcoes.entrada);
@@ -1830,8 +2014,8 @@ function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, ad
   addPreto();
 
   // GLÓRIA (reutiliza banco da Trindade)
-  if (opcoes.gloria && bancoTrindade && bancoTrindade.gloria) {
-    const gl = bancoTrindade.gloria.find(c => c.titulo === opcoes.gloria);
+  if (opcoes.gloria) {
+    const gl = bancoDecimo.gloria.find(c => c.titulo === opcoes.gloria);
     if (gl) renderMus(gl);
   }
   addPreto();
@@ -1859,7 +2043,13 @@ function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, ad
   }
   addPreto();
 
-  // SANTO (reutiliza banco da Trindade)
+  // OE IV — primeira resposta ANTES do Santo
+  if (oe.antesDoSanto.length > 0) {
+    oe.antesDoSanto.forEach(r => addTexto(r, true));
+    addPreto();
+  }
+
+  // SANTO
   if (opcoes.santo && bancoTrindade && bancoTrindade.santo) {
     const st = bancoTrindade.santo.find(c => c.titulo === opcoes.santo);
     if (st) renderMus(st);
@@ -1871,11 +2061,10 @@ function gerarMissaDecimo(opcoes, addSlidePreto, addSlideTexto, addSlideFixo, ad
   addPreto();
 
   // MISTÉRIO DA FÉ
-  const misterio = misteriosDaFe[misterioNum];
-  if (misterio) addTexto(misterio, true);
+  addTexto(misteriosDaFe[misterioNum], true);
   addPreto();
 
-  // Respostas após o Mistério da Fé
+  // Respostas após o Mistério
   oe.aposDoMisterio.forEach(r => addTexto(r, true));
   addPreto();
 
