@@ -2093,6 +2093,375 @@ function gerarMissaDecimo(opcoes, _1, _2, _3, _4, _5, _6, bancoTrindade) {
 
 
 // =============================================
+// BANCO — SAGRADO CORAÇÃO DE JESUS — 12/06/2026
+// =============================================
+
+const bancoSagradoCoracao = {
+
+  cantos_entrada: [
+    {
+      titulo: "O Coração Divino Espaço",
+      secoes: [
+        { tipo: "Estrofe", texto: "Com amor eu te louvo\nem meu canto\nCoração Redentor de Jesus,\nÉs o centro da vida, da igreja,\nQue em ti sempre\nveja nascer nova luz." },
+        { tipo: "Refrão", texto: "Ó coração divino espaço,\nme acolhe sempre em teu abraço,\nquero pulsar\nno teu compasso, coração. (Bis)" },
+        { tipo: "Estrofe", texto: "Coração que se deu por inteiro,\nno momento supremo da dor.\nÉ o exemplo do ardor missionário,\nque vence o calvário\ne projeta o amor." },
+        { tipo: "Refrão", texto: "Ó coração divino espaço,\nme acolhe sempre em teu abraço,\nquero pulsar\nno teu compasso, coração. (Bis)" },
+      ]
+    },
+    {
+      titulo: "Coração de Cristo, Coração de Homem",
+      secoes: [
+        { tipo: "Estrofe", texto: "1 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos suplicar, coração bondoso\nO teu povo ainda não sabe amar" },
+        { tipo: "Estrofe", texto: "2 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos te pedir, coração humilde\nO teu povo ainda não sabe servir" },
+        { tipo: "Estrofe", texto: "3 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos implorar, coração tão manso\nEnsina teu povo sempre a perdoar" },
+        { tipo: "Estrofe", texto: "4 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos te cantar, coração fraterno\nEnsina teu povo os bens partilhar" },
+        { tipo: "Estrofe", texto: "5 Coração de Cristo, pobre e solidário\nÉs nossa riqueza: Ouve nosso grito\nCoração querido, vê nossa pobreza\nUm coração novo para um mundo novo\nTodos precisamos, haja paz na terra\nReine a justiça, nós te suplicamos" },
+      ]
+    },
+    {
+      titulo: "Eis os Pensamentos do Seu Coração",
+      secoes: [
+        { tipo: "Refrão", texto: "EIS OS PENSAMENTOS\nDO SEU CORAÇÃO\nQUE PERMANECEM\nAO LONGO DAS GERAÇÕES:\nLIBERTAR DA MORTE\nTODOS OS HOMENS\nE CONSERVAR-LHES A VIDA\nEM TEMPO DE PENÚRIA." },
+        { tipo: "Estrofe", texto: "1. Ó JUSTOS, ALEGRAI-VOS\nNO SENHOR,\nAOS RETOS FICA BEM\nGLORIFICÁ-LO." },
+        { tipo: "Refrão", texto: "EIS OS PENSAMENTOS\nDO SEU CORAÇÃO\nQUE PERMANECEM\nAO LONGO DAS GERAÇÕES:\nLIBERTAR DA MORTE\nTODOS OS HOMENS\nE CONSERVAR-LHES A VIDA\nEM TEMPO DE PENÚRIA." },
+        { tipo: "Estrofe", texto: "2. POIS RETA É A\nPALAVRA DO SENHOR\nE TUDO O QUE ELE FAZ\nMERECE FÉ." },
+        { tipo: "Refrão", texto: "EIS OS PENSAMENTOS\nDO SEU CORAÇÃO\nQUE PERMANECEM\nAO LONGO DAS GERAÇÕES:\nLIBERTAR DA MORTE\nTODOS OS HOMENS\nE CONSERVAR-LHES A VIDA\nEM TEMPO DE PENÚRIA." },
+        { tipo: "Estrofe", texto: "3. DEUS AMA O DIREITO\nE A JUSTIÇA,\nTRANSBORDA EM TODA\nA TERRA A SUA GRAÇA." },
+        { tipo: "Refrão", texto: "EIS OS PENSAMENTOS\nDO SEU CORAÇÃO\nQUE PERMANECEM\nAO LONGO DAS GERAÇÕES:\nLIBERTAR DA MORTE\nTODOS OS HOMENS\nE CONSERVAR-LHES A VIDA\nEM TEMPO DE PENÚRIA." },
+        { tipo: "Estrofe", texto: "4. GLÓRIA AO PAI E AO FILHO\nE AO SANTO ESPÍRITO,\nCOMO ERA NO PRINCÍPIO,\nAGORA E SEMPRE. AMÉM." },
+        { tipo: "Refrão", texto: "EIS OS PENSAMENTOS\nDO SEU CORAÇÃO\nQUE PERMANECEM\nAO LONGO DAS GERAÇÕES:\nLIBERTAR DA MORTE\nTODOS OS HOMENS\nE CONSERVAR-LHES A VIDA\nEM TEMPO DE PENÚRIA." },
+      ]
+    },
+    {
+      titulo: "Vós Sois o Caminho, a Verdade e a Vida",
+      secoes: [
+        { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+        { tipo: "Estrofe", texto: "1. NÓS SOMOS CAMINHEIROS\nQUE MARCHAM PARA OS CÉUS\nJESUS É O CAMINHO\nQUE NOS CONDUZ A DEUS." },
+        { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+        { tipo: "Estrofe", texto: "2. DA NOITE DA MENTIRA,\nDAS TREVAS PARA A LUZ,\nBUSQUEMOS A VERDADE:\nVERDADE É SÓ JESUS!" },
+        { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+        { tipo: "Estrofe", texto: "3. PECAR É NÃO TER VIDA,\nPECAR É NÃO TER LUZ,\nTEM VIDA SÓ QUEM SEGUE\nOS PASSOS DE JESUS!" },
+        { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+        { tipo: "Estrofe", texto: "4. JESUS, VERDADE E VIDA,\nCAMINHO QUE CONDUZ\nA IGREJA PEREGRINA\nQUE MARCHA PARA A LUZ." },
+        { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+      ]
+    },
+  ],
+
+  ladainha: {
+    titulo: "Ladainha do Sagrado Coração de Jesus",
+    secoes: [
+      { tipo: "Única", texto: "Senhor, tende piedade de nós.\nJesus Cristo, tende piedade de nós.\nSenhor, tende piedade de nós.\nJesus Cristo, ouvi-nos.\nJesus Cristo, atendei-nos." },
+      { tipo: "Única", texto: "Deus, Pai dos céus,\ntende piedade de nós.\nDeus Filho, Redentor do mundo,\ntende piedade de nós.\nDeus Espírito Santo,\ntende piedade de nós.\nSantíssima Trindade,\nque sois um só Deus,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus, Filho do Pai eterno,\nCoração de Jesus, formado pelo Espírito\nSanto no seio da Virgem Mãe,\nCoração de Jesus, unido\nSubstancialmente ao Verbo de Deus,\ntende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\nde majestade infinita.\nCoração de Jesus, templo santo de Deus.\nCoração de Jesus, tabernáculo do Altíssimo." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\ncasa de Deus e porta do céu.\nCoração de Jesus, fornalha ardente\nde caridade. Coração de Jesus,\nreceptáculo de justiça e de amor." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\ncheio de bondade e de amor.\nCoração de Jesus, abismo de\ntodas as virtudes. Coração de Jesus,\ndigníssimo de todo o louvor." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\nrei e centro de todos os corações.\nCoração de Jesus, no qual estão\nos tesouros da sabedoria e da ciência.\nCoração de Jesus, no qual habita\ntoda a plenitude da divindade." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus, no qual o Pai\npôs as Suas complacências. Coração de Jesus,\nde cuja plenitude todos nós recebemos.\nCoração de Jesus, desejo das colinas eternas." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\npaciente e de muita misericórdia.\nCoração de Jesus, rico para todos\nos que Vos invocam. Coração de Jesus,\nfonte de vida e de santidade." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\npropiciação pelos nossos pecados.\nCoração de Jesus, saturado de opróbrios.\nCoração de Jesus, esmagado\npelos nossos pecados." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\nfeito obediente até a morte.\nCoração de Jesus, atravessado pela lança.\nCoração de Jesus, fonte de toda a consolação." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\nnossa vida e ressurreição.\nCoração de Jesus, nossa paz e reconciliação.\nCoração de Jesus, vítima dos pecadores." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Coração de Jesus,\nsalvação dos que esperam em Vós.\nCoração de Jesus, esperança dos que\nmorrem em Vós. Coração de Jesus,\ndelícia de todos os santos." },
+      { tipo: "Refrão", texto: "Tende piedade de nós,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Cordeiro de Deus,\nque tirais os pecados do mundo,\nperdoai-nos, Senhor. Cordeiro de Deus,\nque tirais o pecado do mundo,\nouvi-nos, Senhor. Cordeiro de Deus,\nque tirais o pecado do mundo,\ntende piedade de nós." },
+      { tipo: "Única", texto: "Jesus, manso e humilde de coração,\nFazei nosso coração semelhante ao Vosso" },
+    ]
+  },
+
+  aclamacao: [
+    { titulo: "Aleluia! (1)", secoes: [
+      { tipo: "Refrão", texto: "ALELUIA! ALELUIA!\nALELUIA! ALELUIA! (BIS)" },
+      { tipo: "Estrofe", texto: "Vinde a mim, todos vós\nque estais cansados\ne penais a carregar pesado fardo\nE descanso eu vos darei,\ndiz o Senhor." },
+      { tipo: "Refrão", texto: "ALELUIA! ALELUIA!\nALELUIA! ALELUIA! (BIS)" },
+    ]},
+    { titulo: "Aleluia! (2)", secoes: [
+      { tipo: "Refrão", texto: "ALELUIA! (11X)" },
+      { tipo: "Estrofe", texto: "Vinde a mim, todos vós\nque estais cansados\ne penais a carregar pesado fardo\nE descanso eu vos darei,\ndiz o Senhor." },
+      { tipo: "Refrão", texto: "ALELUIA! (11X)" },
+    ]},
+  ],
+
+  ofertorio: [
+    { titulo: "Um Coração para Amar", secoes: [
+      { tipo: "Estrofe", texto: "1 Um coração para amar,\npra perdoar e sentir\nPara chorar e sorrir,\nao me criar Tu me destes\nUm coração pra sonhar,\ninquieto e sempre a bater\nAnsioso por entender\nas coisas que Tu disseste" },
+      { tipo: "Refrão", texto: "Eis o que eu venho Te dar\nEis o que eu ponho no altar\nToma, Senhor, que ele é Teu\nMeu coração não é meu. (BIS)" },
+      { tipo: "Estrofe", texto: "2 Quero que o meu coração\nseja tão cheio de paz\nQue não se sinta capaz\nde sentir ódio ou rancor\nQuero que a minha oração\npossa me amadurecer\nLeve-me a compreender\nas consequências do amor" },
+      { tipo: "Refrão", texto: "Eis o que eu venho Te dar\nEis o que eu ponho no altar\nToma, Senhor, que ele é Teu\nMeu coração não é meu. (BIS)" },
+    ]},
+    { titulo: "Muito Alegre Eu Te Pedi", secoes: [
+      { tipo: "Estrofe", texto: "1 Muito alegre eu te pedi\no que era meu Partir,\num sonho tão normal\nDissipei meus bens\ne o coração também No fim,\nmeu mundo era irreal" },
+      { tipo: "Refrão", texto: "Confiei no Teu amor e voltei\nSim, aqui é meu lugar\nEu gastei teus bens, ó Pai, e Te dou\nEste pranto em minhas mãos" },
+      { tipo: "Estrofe", texto: "2 Mil amigos conheci,\ndisseram adeus Caiu\na solidão em mim\nUm patrão cruel levou-me\na refletir Meu Pai\nnão trata um servo assim" },
+      { tipo: "Refrão", texto: "Confiei no Teu amor e voltei\nSim, aqui é meu lugar\nEu gastei teus bens, ó Pai, e Te dou\nEste pranto em minhas mãos" },
+      { tipo: "Estrofe", texto: "3 Nem deixaste-me falar\nda ingratidão Morreu\nno abraço o mal que eu fiz\nFesta, roupa nova,\nanel, sandália aos pés Voltei\nà vida, sou feliz" },
+      { tipo: "Refrão", texto: "Confiei no Teu amor e voltei\nSim, aqui é meu lugar\nEu gastei teus bens, ó Pai, e Te dou\nEste pranto em minhas mãos" },
+    ]},
+    { titulo: "Conheço um Coração Tão Manso", secoes: [
+      { tipo: "Estrofe", texto: "Conheço um coração tão manso,\nhumilde e sereno\nQue louva o Pai por revelar\nseu nome aos pequenos\nQue tem o dom de amar,\nque sabe perdoar\nQue deu a vida para nos salvar" },
+      { tipo: "Refrão", texto: "Jesus, manda teu Espírito\nPara transformar meu coração\nJesus, manda teu Espírito\nPara transformar meu coração" },
+      { tipo: "Estrofe", texto: "2 Às vezes no meu peito\nbate um coração de pedra\nMagoado, frio, sem vida,\naqui dentro ele me aperta\nNão quer saber de amar,\nnem sabe perdoar\nQuer tudo e não sabe partilhar" },
+      { tipo: "Refrão", texto: "Jesus, manda teu Espírito\nPara transformar meu coração\nJesus, manda teu Espírito\nPara transformar meu coração" },
+      { tipo: "Estrofe", texto: "3 Lava, purifica\ne restaura-me de novo\nSerás o nosso Deus\ne nós seremos o teu povo\nDerrama sobre nós\na água do amor\nO Espírito de Deus,\nnosso Senhor" },
+      { tipo: "Refrão", texto: "Jesus, manda teu Espírito\nPara transformar meu coração\nJesus, manda teu Espírito\nPara transformar meu coração" },
+    ]},
+  ],
+
+  comunhao: [
+    { titulo: "Vinde a Mim", autor: "Wanderson Sousa", secoes: [
+      { tipo: "Estrofe", texto: "1 Se uma ovelha o rebanho perder\nDeixo as outras depressa, a correr\nPelos pastos, em todo lugar\nDia e noite até encontrar" },
+      { tipo: "Refrão", texto: "Tomai meu jugo e de mim aprendei\nManso e humilde é o meu coração\nÀs vossas almas descanso eu darei\nVinde a mim!" },
+      { tipo: "Estrofe", texto: "2 Verdes pastos e campos vos dou\nCom cuidados, descanso e amor\nAlegrai-vos comigo, voltei!\nA ovelha perdida encontrei!" },
+      { tipo: "Refrão", texto: "Tomai meu jugo e de mim aprendei\nManso e humilde é o meu coração\nÀs vossas almas descanso eu darei\nVinde a mim!" },
+      { tipo: "Estrofe", texto: "3 Alegria no céu haverá\nPor um só que ao Pai retornar\nVos convido à mesa sentar\nVós que abrigo procura encontrar" },
+      { tipo: "Refrão", texto: "Tomai meu jugo e de mim aprendei\nManso e humilde é o meu coração\nÀs vossas almas descanso eu darei\nVinde a mim!" },
+      { tipo: "Estrofe", texto: "4 Vinde a mim quem tem sede e vos dou\nÁgua viva sinal da paixão\nPelo lado que a lança alcançou\nTraspassando o meu coração!" },
+      { tipo: "Refrão", texto: "Tomai meu jugo e de mim aprendei\nManso e humilde é o meu coração\nÀs vossas almas descanso eu darei\nVinde a mim!" },
+    ]},
+    { titulo: "Procuro Abrigo nos Corações", secoes: [
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "1 Eu nasci pra caminhar assim\nDia e noite vou até o fim\nO meu rosto forte o Sol queimou\nMeu cabelo o orvalho já molhou\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "2 Vou batendo até alguém abrir\nNão descanso, o amor me faz seguir\nÉ feliz quem ouve a minha voz\nE abre a porta, entro bem veloz\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "3 Junto à mesa vou sentar depois\nE faremos refeição nós dois\nSentirás seu coração arder\nE esta chama eu tenho que acender\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "4 Aqui dentro o amor nos entretém\nE lá fora o dia eterno vem\nFinalmente nós seremos um\nE teremos tudo em comum\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+    ]},
+    { titulo: "Se Alguém Tiver Sede", secoes: [
+      { tipo: "Refrão", texto: "DIZ O SENHOR:\nSE ALGUÉM TIVER SEDE,\nVENHA A MIM E BEBA.\nDAQUELE QUE CRÊ EM MIM,\nBROTARÃO RIOS DE ÁGUA VIVA." },
+      { tipo: "Estrofe", texto: "1. EIS O DEUS, MEU SALVADOR,\nEU CONFIO E NADA TEMO;\nO SENHOR É MINHA FORÇA,\nMEU LOUVOR E SALVAÇÃO." },
+      { tipo: "Refrão", texto: "DIZ O SENHOR:\nSE ALGUÉM TIVER SEDE,\nVENHA A MIM E BEBA.\nDAQUELE QUE CRÊ EM MIM,\nBROTARÃO RIOS DE ÁGUA VIVA." },
+      { tipo: "Estrofe", texto: "2. COM ALEGRIA BEBEREIS\nNO MANANCIAL DA SALVAÇÃO,\nE DIREIS NAQUELE DIA:\nDAI LOUVORES AO SENHOR," },
+      { tipo: "Refrão", texto: "DIZ O SENHOR:\nSE ALGUÉM TIVER SEDE,\nVENHA A MIM E BEBA.\nDAQUELE QUE CRÊ EM MIM,\nBROTARÃO RIOS DE ÁGUA VIVA." },
+      { tipo: "Estrofe", texto: "3. INVOCAI SEU SANTO NOME,\nANUNCIAI SUAS MARAVILHAS,\nENTRE OS POVOS PROCLAMAI\nQUE O SEU NOME É O MAIS SUBLIME." },
+      { tipo: "Refrão", texto: "DIZ O SENHOR:\nSE ALGUÉM TIVER SEDE,\nVENHA A MIM E BEBA.\nDAQUELE QUE CRÊ EM MIM,\nBROTARÃO RIOS DE ÁGUA VIVA." },
+      { tipo: "Estrofe", texto: "4. LOUVAI CANTANDO AO NOSSO DEUS,\nQUE FEZ PRODÍGIOS E PORTENTOS,\nPUBLICAI EM TODA A TERRA\nSUAS GRANDES MARAVILHAS." },
+      { tipo: "Refrão", texto: "DIZ O SENHOR:\nSE ALGUÉM TIVER SEDE,\nVENHA A MIM E BEBA.\nDAQUELE QUE CRÊ EM MIM,\nBROTARÃO RIOS DE ÁGUA VIVA." },
+    ]},
+    { titulo: "Vós Sois o Caminho, a Verdade e a Vida", secoes: [
+      { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+      { tipo: "Estrofe", texto: "1. NÓS SOMOS CAMINHEIROS\nQUE MARCHAM PARA OS CÉUS\nJESUS É O CAMINHO\nQUE NOS CONDUZ A DEUS." },
+      { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+      { tipo: "Estrofe", texto: "2. DA NOITE DA MENTIRA,\nDAS TREVAS PARA A LUZ,\nBUSQUEMOS A VERDADE:\nVERDADE É SÓ JESUS!" },
+      { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+      { tipo: "Estrofe", texto: "3. PECAR É NÃO TER VIDA,\nPECAR É NÃO TER LUZ,\nTEM VIDA SÓ QUEM SEGUE\nOS PASSOS DE JESUS!" },
+      { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+      { tipo: "Estrofe", texto: "4. JESUS, VERDADE E VIDA,\nCAMINHO QUE CONDUZ\nA IGREJA PEREGRINA\nQUE MARCHA PARA A LUZ." },
+      { tipo: "Refrão", texto: "VÓS SOIS O CAMINHO,\nA VERDADE E A VIDA,\nO PÃO DA ALEGRIA\nDESCIDO DO CÉU!" },
+    ]},
+  ],
+
+  final: [
+    { titulo: "Coração Santo, Tu Reinarás", secoes: [
+      { tipo: "Refrão", texto: "Coração Santo, Tu reinarás;\nTu nosso encanto, sempre serás! (BIS)" },
+      { tipo: "Estrofe", texto: "Jesus amável, Jesus piedoso\nDeus amoroso, frágua de amor!\nAos Teus pés venho, se Tu me deixas\nHumildes queixas, sentido expor!" },
+      { tipo: "Refrão", texto: "Coração Santo, Tu reinarás;\nTu nosso encanto, sempre serás! (BIS)" },
+      { tipo: "Estrofe", texto: "Divino Peito, que amor inflama\nEm viva chama, de Eterna Luz!\nPorque até em sempre, reconcentrada\nNão adorada, Doce Jesus!" },
+      { tipo: "Refrão", texto: "Coração Santo, Tu reinarás;\nTu nosso encanto, sempre serás! (BIS)" },
+      { tipo: "Estrofe", texto: "Correi, cristãos, vinde adorar\nVinde louvar, O Bom Jesus!\nCom grande ardor, Rendei-lhes preitos\nCom os eleitos, na Eterna Luz!" },
+      { tipo: "Refrão", texto: "Coração Santo, Tu reinarás;\nTu nosso encanto, sempre serás! (BIS)" },
+    ]},
+    { titulo: "Coração de Cristo, Coração de Homem", secoes: [
+      { tipo: "Estrofe", texto: "1 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos suplicar, coração bondoso\nO teu povo ainda não sabe amar" },
+      { tipo: "Estrofe", texto: "2 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos te pedir, coração humilde\nO teu povo ainda não sabe servir" },
+      { tipo: "Estrofe", texto: "3 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos implorar, coração tão manso\nEnsina teu povo sempre a perdoar" },
+      { tipo: "Estrofe", texto: "4 Coração de Cristo, coração de homem\nCoração de Deus: Ouve nosso grito\nCoração querido, somos filhos teus\nUm coração novo para um mundo novo\nViemos te cantar, coração fraterno\nEnsina teu povo os bens partilhar" },
+      { tipo: "Estrofe", texto: "5 Coração de Cristo, pobre e solidário\nÉs nossa riqueza: Ouve nosso grito\nCoração querido, vê nossa pobreza\nUm coração novo para um mundo novo\nTodos precisamos, haja paz na terra\nReine a justiça, nós te suplicamos" },
+    ]},
+    { titulo: "Levantai-vos, Soldados de Cristo", secoes: [
+      { tipo: "Estrofe", texto: "1 Levantai-vos, soldados de Cristo\nEia avante na senda da glória\nDesfraldai no pendão da vitória\nO imortal coração de Jesus\nDesfraldai no pendão da vitória\nO imortal coração de Jesus" },
+      { tipo: "Estrofe", texto: "2 Não nascemos senão para a luta\nDa batalha amplo campo é a terra\nÉ renhida e constante esta guerra\nApanágio dos filhos de Adão\nÉ renhida e constante esta guerra\nApanágio dos filhos de Adão" },
+      { tipo: "Estrofe", texto: "3 No combate esforçados valentes\nNão temais, ó soldados de Cristo\nO triunfo será nunca visto\nSe souberdes cumprir sua lei\nO triunfo será nunca visto\nSe souberdes cumprir sua lei" },
+      { tipo: "Estrofe", texto: "4 Amparai-vos no escudo da graça\nFortaleza circunde vossa alma\nPela fé no Senhor, vossa palma\nÉ segura na eterna mansão\nPela fé no Senhor, vossa palma\nÉ segura na eterna mansão" },
+      { tipo: "Estrofe", texto: "5 É Jesus nosso rei soberano\nSeu amor de atrair-nos não cessa\nDe vencer dá-nos firme promessa\nE prepara fiel galardão\nDe vencer dá-nos firme promessa\nE prepara fiel galardão" },
+      { tipo: "Estrofe", texto: "6 De Jesus, coração sacrossanto\nGuardai pura esta santa bandeira\nNo combate, esperança fagueira\nDo triunfo seguro penhor\nNo combate, esperança fagueira\nDo triunfo seguro penhor" },
+    ]},
+  ],
+};
+
+// Leituras fixas
+const slidesFixosSagradoCoracao = {
+  primeiraLeitura: ["Deuteronômio 7,6-11"],
+  salmo: ["O amor do Senhor Deus\npor quem o teme,\né de sempre\ne perdura para sempre."],
+  segundaLeitura: ["1 João 4,7-16"],
+  evangelho: ["Mateus 11,25-30"],
+  preces: ["Mostrai-nos, Senhor,\no vosso amor!"],
+};
+
+function gerarMissaSagradoCoracao(opcoes, _1, _2, _3, _4, _5, _6, bancoTrindade, oracoesEucaristicas, misteriosDaFe) {
+  const pres = new pptxgen();
+  pres.layout = "LAYOUT_4x3";
+  pres.title = "LiturgiaPlay — Sagrado Coração de Jesus";
+
+  const FONTE = "Arial";
+  const COR_TEXTO = "000000";
+  const FONT_MIN = 28;
+
+  function calcFonte(linhas) {
+    const n = linhas.length;
+    const maxChars = Math.max(...linhas.map(l => l.length));
+    let fs = n <= 2 ? 54 : n <= 3 ? 48 : n <= 4 ? 44 : n <= 5 ? 40 : n <= 6 ? 36 : n <= 7 ? 32 : 28;
+    if (maxChars > 28) fs = Math.min(fs, 40);
+    if (maxChars > 32) fs = Math.min(fs, 36);
+    if (maxChars > 38) fs = Math.min(fs, 34);
+    if (maxChars > 44) fs = Math.min(fs, 32);
+    if (maxChars > 52) fs = Math.min(fs, 28);
+    if (maxChars > 60) fs = Math.min(fs, 24);
+    return Math.max(fs, FONT_MIN);
+  }
+
+  function addTexto(texto, negrito) {
+    const linhas = texto.split("\n");
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, idx) => ({ text: l, options: { breakLine: idx < linhas.length - 1, bold: negrito } })),
+      { x: 0.3, y: 0.2, w: 9.4, h: 7.1, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.2 }
+    );
+  }
+
+  function addPreto() { const s = pres.addSlide(); s.background = { color: "000000" }; }
+
+  function addFixo(titulo, linhas) {
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    slide.addText(titulo, { x: 0.3, y: 0.2, w: 9.4, h: 0.7, fontSize: 22, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "left", valign: "top" });
+    slide.addShape("rect", { x: 0.3, y: 0.95, w: 9.4, h: 0.03, fill: { color: "CCCCCC" }, line: { color: "CCCCCC" } });
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, i) => ({ text: l, options: { breakLine: i < linhas.length - 1, bold: false } })),
+      { x: 0.3, y: 1.1, w: 9.4, h: 6.3, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.3 }
+    );
+  }
+
+  function renderMus(musica) {
+    musica.secoes.forEach(s => {
+      const bold = s.tipo === "Refrão" || s.tipo === "Única";
+      addTexto(s.texto, bold);
+    });
+  }
+
+  const oeNum = opcoes.oracao_eucaristica || 1;
+  const misterioNum = opcoes.misterio_fe || 1;
+  const oe = oracoesEucaristicas[oeNum];
+
+  // CAPA
+  const capSlide = pres.addSlide();
+  capSlide.background = { color: "FFFFFF" };
+  capSlide.addText("Sagrado Coração de Jesus — 12 de junho de 2026", { x: 1.0, y: 1.8, w: 8, h: 0.5, fontSize: 18, color: "888888", fontFace: FONTE, align: "center" });
+  capSlide.addText("Solenidade do\nSagrado Coração de Jesus", { x: 1.0, y: 2.4, w: 8, h: 2.5, fontSize: 44, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle" });
+
+  // OE IV — antes do Santo
+  if (oe.antesDoSanto.length > 0) { oe.antesDoSanto.forEach(r => addTexto(r, true)); addPreto(); }
+
+  // ENTRADA
+  const entrada = bancoSagradoCoracao.cantos_entrada.find(c => c.titulo === opcoes.entrada);
+  if (entrada) renderMus(entrada);
+  addPreto();
+
+  // ATO PENITENCIAL (reutiliza banco do décimo)
+  if (opcoes.penitencial && bancoDecimo) {
+    const pen = bancoDecimo.penitencial.find(c => c.titulo === opcoes.penitencial);
+    if (pen) renderMus(pen);
+  }
+  addPreto();
+
+  // GLÓRIA (reutiliza banco do décimo)
+  if (opcoes.gloria && bancoDecimo) {
+    const gl = bancoDecimo.gloria.find(c => c.titulo === opcoes.gloria);
+    if (gl) renderMus(gl);
+  }
+  addPreto();
+
+  // LITURGIA DA PALAVRA
+  addFixo("I LEITURA:", slidesFixosSagradoCoracao.primeiraLeitura);
+  addFixo("Salmo responsorial 102(103)", slidesFixosSagradoCoracao.salmo);
+  addFixo("II LEITURA:", slidesFixosSagradoCoracao.segundaLeitura);
+
+  // ACLAMAÇÃO
+  if (opcoes.aclamacao) {
+    const ac = bancoSagradoCoracao.aclamacao.find(c => c.titulo === opcoes.aclamacao);
+    if (ac) renderMus(ac);
+  }
+
+  addFixo("EVANGELHO", slidesFixosSagradoCoracao.evangelho);
+  addPreto();
+
+  // LADAINHA — após o Evangelho, antes das Preces
+  if (opcoes.ladainha) {
+    renderMus(bancoSagradoCoracao.ladainha);
+    addPreto();
+  }
+
+  // ORAÇÃO DOS FIÉIS
+  addFixo("Oração dos Fiéis", slidesFixosSagradoCoracao.preces);
+  addPreto();
+
+  // OFERTÓRIO
+  if (opcoes.ofertorio) {
+    const of = bancoSagradoCoracao.ofertorio.find(c => c.titulo === opcoes.ofertorio);
+    if (of) renderMus(of);
+  }
+  addPreto();
+
+  // SANTO
+  if (opcoes.santo && bancoTrindade && bancoTrindade.santo) {
+    const st = bancoTrindade.santo.find(c => c.titulo === opcoes.santo);
+    if (st) renderMus(st);
+  }
+  addPreto();
+
+  // OE — respostas após Santo
+  oe.aposDoSanto.forEach(r => addTexto(r, true));
+  addPreto();
+
+  // MISTÉRIO DA FÉ
+  addTexto(misteriosDaFe[misterioNum], true);
+  addPreto();
+
+  // Respostas após Mistério
+  oe.aposDoMisterio.forEach(r => addTexto(r, true));
+  addPreto();
+
+  // CORDEIRO
+  if (opcoes.cordeiro && bancoTrindade && bancoTrindade.cordeiro) {
+    const cord = bancoTrindade.cordeiro.find(c => c.titulo === opcoes.cordeiro);
+    if (cord) renderMus(cord);
+  }
+  addPreto();
+
+  // COMUNHÃO
+  if (opcoes.comunhao) {
+    const com = bancoSagradoCoracao.comunhao.find(c => c.titulo === opcoes.comunhao);
+    if (com) renderMus(com);
+  }
+  addPreto();
+
+  // FINAL
+  if (opcoes.final) {
+    const fin = bancoSagradoCoracao.final.find(c => c.titulo === opcoes.final);
+    if (fin) renderMus(fin);
+  }
+
+  return pres;
+}
+
+
+// =============================================
 // ROTAS DA API
 // =============================================
 
@@ -2118,8 +2487,11 @@ app.post("/gerar", async (req, res) => {
     // Seleciona a função correta baseada no domingo
     const isTrindade = domingo && domingo.toLowerCase().includes('trindade');
     const isDecimo = domingo && domingo.toLowerCase().includes('decimo');
+    const isSagrado = domingo && domingo.toLowerCase().includes('sagrado');
     let pres;
-    if (isDecimo) {
+    if (isSagrado) {
+      pres = gerarMissaSagradoCoracao(opcoes, null, null, null, null, null, null, bancoTrindade, oracoesEucaristicas, misteriosDaFe);
+    } else if (isDecimo) {
       pres = gerarMissaDecimo(opcoes, null, null, null, null, null, null, bancoTrindade);
     } else if (isTrindade) {
       pres = gerarMissaTrindade(opcoes);
