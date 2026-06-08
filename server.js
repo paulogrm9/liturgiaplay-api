@@ -2462,6 +2462,330 @@ function gerarMissaSagradoCoracao(opcoes, _1, _2, _3, _4, _5, _6, bancoTrindade,
 
 
 // =============================================
+// BANCO — 11º DOMINGO DO TEMPO COMUM — 14/06/2026
+// =============================================
+
+const bancoUndecimo = {
+
+  cantos_entrada: [
+    {
+      titulo: "Tua Voz Me Fez Refletir",
+      secoes: [
+        { tipo: "Estrofe", texto: "1 Quando chamaste os doze\nprimeiros pra te seguir\nSei que chamavas a todos\nos que haviam de vir" },
+        { tipo: "Refrão", texto: "Tua voz me fez refletir\nDeixei tudo pra te seguir\nNos teus mares\neu quero navegar. (BIS)" },
+        { tipo: "Estrofe", texto: "2 Quando pediste aos doze\nprimeiros: Ide ensinai\nSei que pedias\na todos nós: Evangelizai!" },
+        { tipo: "Refrão", texto: "Tua voz me fez refletir\nDeixei tudo pra te seguir\nNos teus mares\neu quero navegar. (BIS)" },
+        { tipo: "Estrofe", texto: "3 Quando enviaste os doze\nprimeiros de dois em dois\nSei que enviavas\ntodos os que viessem depois" },
+        { tipo: "Refrão", texto: "Tua voz me fez refletir\nDeixei tudo pra te seguir\nNos teus mares\neu quero navegar. (BIS)" },
+      ]
+    },
+    {
+      titulo: "O Senhor Ouve Meu Grito",
+      secoes: [
+        { tipo: "Refrão", texto: "Ó Senhor ouve o meu grito,\nTu és minha proteção;\nSenhor não me abandones,\nDeus, minha salvação!" },
+        { tipo: "Estrofe", texto: "O senhor é minha luz\nEle é minha salvação\nO que é que eu vou temer?\nDeus é minha proteção\nEle guarda minha vida\nEu não vou ter medo, não\nEle guarda minha vida\nEu não vou ter medo, não" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "Quando os maus vêm avançando\nProcurando me acuar\nDesejando ver meu fim\nQuerendo me matar\nInimigos opressores\nÉ que vão se liquidar\nInimigos opressores\nÉ que vão se liquidar" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "Se um exército se armar\nContra mim, não temerei\nMeu coração está firme\nE firme ficarei\nSe estourar uma batalha\nMesmo assim, confiarei!\nSe estourar uma batalha\nMesmo assim, confiarei!" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+        { tipo: "Estrofe", texto: "4. Sei que eu hei de ver\nUm dia, a bondade do senhor\nLá, na terra dos viventes\nViverei no seu amor\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu senhor!\nEspera em Deus! Cria coragem!\nEspera em Deus que é teu senhor!" },
+        { tipo: "Refrão", texto: "O senhor é minha luz\nEle é minha salvação\nQue poderei temer?\nDeus, minha proteção!" },
+      ]
+    },
+    {
+      titulo: "Ó Senhor, Ouvi a Voz do Meu Apelo",
+      secoes: [
+        { tipo: "Refrão", texto: "Ó Senhor, ouvi\na voz do meu apelo,\natendei por compaixão!\nNão afasteis em vossa ira\no vosso servo,\nsois vós o meu auxílio!" },
+        { tipo: "Estrofe", texto: "1 O Senhor é minha luz e salvação;\nde quem eu terei medo?\nO Senhor é a proteção da minha vida;\nperante quem eu tremerei?" },
+        { tipo: "Refrão", texto: "Ó Senhor, ouvi\na voz do meu apelo,\natendei por compaixão!\nNão afasteis em vossa ira\no vosso servo,\nsois vós o meu auxílio!" },
+        { tipo: "Estrofe", texto: "3 Se os inimigos\nse acamparem contra mim,\nnão temerá meu coração;\nse contra mim uma batalha estourar,\nmesmo assim confiarei." },
+        { tipo: "Refrão", texto: "Ó Senhor, ouvi\na voz do meu apelo,\natendei por compaixão!\nNão afasteis em vossa ira\no vosso servo,\nsois vós o meu auxílio!" },
+        { tipo: "Estrofe", texto: "3 Ofertarei um sacrifício de alegria,\nno templo do Senhor.\nCantarei salmos ao Senhor\nao som da harpa\ne hinos de louvor." },
+      ]
+    },
+    {
+      titulo: "Me Chamastes para Caminhar",
+      secoes: [
+        { tipo: "Estrofe", texto: "1 Me chamaste para caminhar\nna vida contigo\nDecidi para sempre seguir-te,\nnão voltar atrás\nMe puseste uma brasa no peito\ne uma flecha na alma\nÉ difícil agora viver\nsem lembrar-me de ti" },
+        { tipo: "Refrão", texto: "Te amarei, Senhor,\nte amarei, Senhor\nEu só encontro a paz\ne a alegria\nbem perto de ti, (BIS)" },
+        { tipo: "Estrofe", texto: "2 Eu pensei muitas vezes\ncalar e não dar nem resposta\nEu pensei na fuga esconder-me,\nir longe de ti\nMas tua força venceu\ne, ao final, eu fiquei seduzido\nÉ difícil agora viver\nsem saudades de ti" },
+        { tipo: "Refrão", texto: "Te amarei, Senhor,\nte amarei, Senhor\nEu só encontro a paz\ne a alegria\nbem perto de ti, (BIS)" },
+        { tipo: "Estrofe", texto: "3 Ó Jesus, não me deixe\njamais caminhar solitário\nPois conheces a minha\nfraqueza e o meu coração\nVem, ensina-me a viver\na vida na tua presença\nNo amor dos irmãos,\nna alegria, na paz, na união" },
+        { tipo: "Refrão", texto: "Te amarei, Senhor,\nte amarei, Senhor\nEu só encontro a paz\ne a alegria\nbem perto de ti, (BIS)" },
+      ]
+    },
+  ],
+
+  aclamacao: [
+    { titulo: "Aleluia! (1) 8x", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+      { tipo: "Estrofe", texto: "O Reino do céu está perto!\nConvertei-vos, irmãos, é preciso!\nCrede todos no Evangelho!" },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+    ]},
+    { titulo: "Aleluia! (2) 11x", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! (11x)" },
+      { tipo: "Estrofe", texto: "O Reino do céu está perto!\nConvertei-vos, irmãos, é preciso!\nCrede todos no Evangelho!" },
+      { tipo: "Refrão", texto: "Aleluia! (11x)" },
+    ]},
+    { titulo: "Aleluia! (3) 6x", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (BIS)" },
+      { tipo: "Estrofe", texto: "O Reino do céu está perto!\nConvertei-vos, irmãos, é preciso!\nCrede todos no Evangelho!" },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia! Aleluia! (BIS)" },
+    ]},
+    { titulo: "Aleluia! (4) Órgão 8x", secoes: [
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+      { tipo: "Estrofe", texto: "O Reino do céu está perto!\nConvertei-vos, irmãos, é preciso!\nCrede todos no Evangelho!" },
+      { tipo: "Refrão", texto: "Aleluia! Aleluia!\nAleluia! Aleluia! (BIS)" },
+    ]},
+  ],
+
+  comunhao: [
+    { titulo: "Jesus, Vendo a Multidão", secoes: [
+      { tipo: "Refrão", texto: "Jesus, vendo a multidão,\nsentiu grande compaixão,\npois cansada ela estava\ncomo ovelhas sem pastor;\npois cansada ela estava\ncomo ovelhas sem pastor." },
+      { tipo: "Estrofe", texto: "1. O Senhor é o pastor que me conduz;\nnão me falta coisa alguma.\nPelos prados e campinas verdejantes\nele me leva a descansar." },
+      { tipo: "Estrofe", texto: "2. Para as águas repousantes me encaminha,\ne restaura as minhas forças.\nEle me guia no caminho mais seguro,\npela honra de seu nome." },
+      { tipo: "Estrofe", texto: "3. Mesmo que eu passe pelo vale tenebroso,\nnenhum mal eu temerei;\nestais comigo com bastão e com cajado;\neles me dão a segurança!" },
+      { tipo: "Estrofe", texto: "4. Preparais à minha frente uma mesa,\nbem à vista do inimigo;\ne com óleo vós ungis minha cabeça;\no meu cálice transborda." },
+      { tipo: "Estrofe", texto: "5. Felicidade e todo o bem hão de seguir-me,\npor toda a minha vida;\ne, na casa do Senhor, habitarei\npelos tempos infinitos." },
+    ]},
+    { titulo: "O Povo do Senhor", secoes: [
+      { tipo: "Estrofe", texto: "1 O Reino dos Céus se aproxima!\nAnunciai em vosso caminho.\nA messe é grande, mas poucos\nrespondem ao chamado de Deus\nIde às ovelhas que se perderam,\nTrazei-as de volta ao seu Pastor!\nSe recebestes de graça,\nde graça, então, deveis dar!" },
+      { tipo: "Refrão", texto: "Nós somos o povo do Senhor\nQue vem receber o Pão do Céu.\nEle é a força, é a nossa proteção!\nNossa oração nós elevamos,\nEstão seus olhos sobre nós!\nA sua salvação não falhará!" },
+      { tipo: "Estrofe", texto: "2 Todo aquele que se declarar\nA meu favor diante dos homens,\nDeclarar-me-ei\nem seu favor diante do Pai.\nNão tenhais medo diante dos homens;\nO que eu vos digo na escuridão,\nDizei-o à clara luz do dia\ncom todo o vigor!" },
+      { tipo: "Refrão", texto: "Nós somos o povo do Senhor\nQue vem receber o Pão do Céu.\nEle é a força, é a nossa proteção!\nNossa oração nós elevamos,\nEstão seus olhos sobre nós!\nA sua salvação não falhará!" },
+      { tipo: "Estrofe", texto: "3 Quem ama seu pai ou sua mãe,\nAma seu filho ou sua filha\nMais do que a mim,\ndigno de mim então, não será!\nQuem não carrega a sua Cruz,\nQuem não perder a sua vida por mim,\nMas quem me recebe,\nrecebe aquele que me enviou!" },
+      { tipo: "Refrão", texto: "Nós somos o povo do Senhor\nQue vem receber o Pão do Céu.\nEle é a força, é a nossa proteção!\nNossa oração nós elevamos,\nEstão seus olhos sobre nós!\nA sua salvação não falhará!" },
+    ]},
+    { titulo: "Vem, Senhor, Vem Curar Nossos Males", secoes: [
+      { tipo: "Refrão", texto: "Vem, Senhor, vem curar nossos males,\nlibertar-nos das duras correntes!\nVem trazer aos perdidos a graça\ne a saúde vem dar aos doentes!" },
+      { tipo: "Estrofe", texto: "1. Um canto novo ao Senhor,\nó terras todas, cantai!\nLouvai seu nome bendito,\ndiariamente aclamai!\nSua glória, seus grandes feitos\naos povos todos contai." },
+      { tipo: "Refrão", texto: "Vem, Senhor, vem curar nossos males,\nlibertar-nos das duras correntes!\nVem trazer aos perdidos a graça\ne a saúde vem dar aos doentes!" },
+      { tipo: "Estrofe", texto: "2. Ele é o maior dos senhores:\nmerece nosso louvor;\ne mais do que aos deuses todos\nnós lhe devemos temor.\nOs outros deuses são nada,\nele é do céu criador." },
+      { tipo: "Refrão", texto: "Vem, Senhor, vem curar nossos males,\nlibertar-nos das duras correntes!\nVem trazer aos perdidos a graça\ne a saúde vem dar aos doentes!" },
+      { tipo: "Estrofe", texto: "3. Sabei que o Senhor é rei\ne traz justiça a esta terra.\nAlegrem-se o mar e os peixes\ne tudo o que o mundo encerra.\nOs campos, plantas, montanhas\ne as árvores da floresta." },
+      { tipo: "Refrão", texto: "Vem, Senhor, vem curar nossos males,\nlibertar-nos das duras correntes!\nVem trazer aos perdidos a graça\ne a saúde vem dar aos doentes!" },
+      { tipo: "Estrofe", texto: "4. Ele é o Senhor do universo\ne faz justiça a seu povo.\nAos povos há de julgar,\nreinando no mundo todo\npor isso, ele cantai,\nó terras, um canto novo!" },
+      { tipo: "Refrão", texto: "Vem, Senhor, vem curar nossos males,\nlibertar-nos das duras correntes!\nVem trazer aos perdidos a graça\ne a saúde vem dar aos doentes!" },
+    ]},
+    { titulo: "Procuro Abrigo nos Corações", secoes: [
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "1 Eu nasci pra caminhar assim\nDia e noite vou até o fim\nO meu rosto forte o Sol queimou\nMeu cabelo o orvalho já molhou\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "2 Vou batendo até alguém abrir\nNão descanso, o amor me faz seguir\nÉ feliz quem ouve a minha voz\nE abre a porta, entro bem veloz\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "3 Junto à mesa vou sentar depois\nE faremos refeição nós dois\nSentirás seu coração arder\nE esta chama eu tenho que acender\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+      { tipo: "Estrofe", texto: "4 Aqui dentro o amor nos entretém\nE lá fora o dia eterno vem\nFinalmente nós seremos um\nE teremos tudo em comum\nEu cumpro a ordem do meu coração" },
+      { tipo: "Refrão", texto: "Procuro abrigo nos corações\nDe porta em porta desejo entrar\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição.\nSe alguém me acolhe com gratidão\nFaremos juntos a refeição." },
+    ]},
+    { titulo: "Vejam, Eu Andei pelas Vilas", secoes: [
+      { tipo: "Estrofe", texto: "1 Vejam, eu andei pelas vilas\nApontei as saídas, como o Pai me pediu\nPortas, eu cheguei para abri-las\nEu curei as feridas como nunca se viu" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "2 Vejam, fiz de novo a leitura\nDas raízes da vida que meu Pai vê melhor\nLuzes, acendi com brandura\nPara a ovelha perdida não medi meu suor" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "3 Vejam, procurei bem aqueles\nQue ninguém procurava e falei de meu Pai\nPobres, a esperança que é deles\nEu não quis ser escrava de um poder que retrai" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "4 Vejam, semeei consciência\nNos caminhos do povo, pois o Pai quer assim\nTramas, enfrentei prepotência dos que temem o novo\nQual perigo sem fim" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "5 Vejam, eu quebrei as algemas\nLevantei os caídos, do meu Pai, fui as mãos\nLaços, recusei os esquemas\nEu não quero oprimidos, quero um povo de irmãos" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "6 Vejam, procurei ser bem claro\nO meu reino é diverso, não precisa de Rei\nTronos, outro jeito mais raro\nDe juntar os dispersos, o meu Pai tem por lei" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "7 Vejam, do meu Pai a vontade\nEu cumpri passo a passo, foi pra isso que eu vim\nDores, enfrentei a maldade\nMesmo frente ao fracasso eu mantive meu sim" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+      { tipo: "Estrofe", texto: "8 Vejam, fui além das fronteiras\nEspalhei boa-nova, todos filhos de Deus\nVida, não se deixe nas beiras\nQuem quiser maior prova, venha ser um dos meus" },
+      { tipo: "Refrão", texto: "Por onde formos, também nós\nque brilhe a Tua luz\nFala, Senhor, na nossa voz,\nem nossa vida!\nNosso caminho então conduz,\nqueremos ser assim\nQue o Pão da Vida nos revigore\nno nosso sim!" },
+    ]},
+  ],
+
+  // Finais 7 e 8 — novos
+  final_extra: [
+    { titulo: "Um Dia Escutei Teu Chamado", secoes: [
+      { tipo: "Estrofe", texto: "1 UM DIA ESCUTEI TEU CHAMADO,\nDIVINO RECADO BATENDO NO CORAÇÃO.\nDEIXEI DESTE MUNDO AS PROMESSAS\nE FUI BEM DEPRESSA NO RUMO DA TUA MÃO." },
+      { tipo: "Refrão", texto: "TU ÉS A RAZÃO DA JORNADA,\nTU ÉS MINHA ESTRADA, MEU GUIA, MEU FIM.\nNO GRITO QUE VEM DO TEU POVO,\nTE ESCUTO DE NOVO, CHAMANDO POR MIM." },
+      { tipo: "Estrofe", texto: "2 OS ANOS PASSARAM LIGEIRO,\nME FIZ UM OBREIRO DO REINO DE PAZ E AMOR.\nNOS MARES DO MUNDO NAVEGO,\nE ÀS REDES ME ENTREGO,\nTORNEI-ME TEU PESCADOR." },
+      { tipo: "Refrão", texto: "TU ÉS A RAZÃO DA JORNADA,\nTU ÉS MINHA ESTRADA, MEU GUIA, MEU FIM.\nNO GRITO QUE VEM DO TEU POVO,\nTE ESCUTO DE NOVO, CHAMANDO POR MIM." },
+      { tipo: "Estrofe", texto: "3 EMBORA TÃO FRACO E PEQUENO,\nCAMINHO SERENO COM A FORÇA QUE VEM DE TI.\nA CADA MOMENTO QUE PASSA\nREVIVO ESTA GRAÇA\nDE SER TEU SINAL AQUI." },
+      { tipo: "Refrão", texto: "TU ÉS A RAZÃO DA JORNADA,\nTU ÉS MINHA ESTRADA, MEU GUIA, MEU FIM.\nNO GRITO QUE VEM DO TEU POVO,\nTE ESCUTO DE NOVO, CHAMANDO POR MIM." },
+    ]},
+    { titulo: "Por Escutar que Faltava Gente", secoes: [
+      { tipo: "Estrofe", texto: "Por escutar uma voz que disse\nque faltava gente pra semear.\nDeixei meu lar e saí sorrindo\ne assoviando pra não chorar.\nFui me alistar entre os operários\nque deixam tudo pra te levar\ne fui lutar por um mundo novo.\nNão tenho lar, mas ganhei um povo. (BIS)" },
+      { tipo: "Refrão", texto: "Sou cidadão do infinito,\ndo infinito, do infinito.\nE levo a paz no meu caminho,\nno meu caminho, no meu caminho." },
+      { tipo: "Estrofe", texto: "2. Eu procurei semear a paz,\ne onde fui andando, falei de Deus.\nAbençoei quem fez pouco caso\ne espalhou cizânia onde eu semeei.\nNão aceitei condecoração\npois haver buscando um país mais irmão.\nVou semeando um mundo por entre o povo\ne vou sonhando este mundo novo. (BIS)" },
+      { tipo: "Refrão", texto: "Sou cidadão do infinito,\ndo infinito, do infinito.\nE levo a paz no meu caminho,\nno meu caminho, no meu caminho." },
+    ]},
+  ],
+};
+
+// Leituras fixas
+const slidesFixosUndecimo = {
+  primeiraLeitura: ["Êxodo 19,2-6a"],
+  salmo: ["Nós somos o povo\ne o rebanho do Senhor."],
+  segundaLeitura: ["Romanos 5,6-11"],
+  evangelho: ["Mateus 9,36-10,8"],
+  preces: ["Enviai, Senhor,\noperários para a vossa messe!"],
+};
+
+function gerarMissaUndecimo(opcoes, _1, _2, _3, _4, _5, _6, bancoTrindade, oracoesEucaristicas, misteriosDaFe, bancoDecimo, bancoSagradoCoracao) {
+  const pres = new pptxgen();
+  pres.layout = "LAYOUT_4x3";
+  pres.title = "LiturgiaPlay — 11º Domingo do Tempo Comum";
+
+  const FONTE = "Arial";
+  const COR_TEXTO = "000000";
+  const FONT_MIN = 28;
+
+  function calcFonte(linhas) {
+    const n = linhas.length;
+    const maxChars = Math.max(...linhas.map(l => l.length));
+    let fs = n <= 2 ? 54 : n <= 3 ? 48 : n <= 4 ? 44 : n <= 5 ? 40 : n <= 6 ? 36 : n <= 7 ? 32 : 28;
+    if (maxChars > 28) fs = Math.min(fs, 40);
+    if (maxChars > 32) fs = Math.min(fs, 36);
+    if (maxChars > 38) fs = Math.min(fs, 34);
+    if (maxChars > 44) fs = Math.min(fs, 32);
+    if (maxChars > 52) fs = Math.min(fs, 28);
+    if (maxChars > 60) fs = Math.min(fs, 24);
+    return Math.max(fs, FONT_MIN);
+  }
+
+  function addTexto(texto, negrito) {
+    const linhas = texto.split("\n");
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, idx) => ({ text: l, options: { breakLine: idx < linhas.length - 1, bold: negrito } })),
+      { x: 0.3, y: 0.2, w: 9.4, h: 7.1, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.2 }
+    );
+  }
+
+  function addPreto() { const s = pres.addSlide(); s.background = { color: "000000" }; }
+
+  function addFixo(titulo, linhas) {
+    const slide = pres.addSlide();
+    slide.background = { color: "FFFFFF" };
+    slide.addText(titulo, { x: 0.3, y: 0.2, w: 9.4, h: 0.7, fontSize: 22, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "left", valign: "top" });
+    slide.addShape("rect", { x: 0.3, y: 0.95, w: 9.4, h: 0.03, fill: { color: "CCCCCC" }, line: { color: "CCCCCC" } });
+    const fs = calcFonte(linhas);
+    slide.addText(
+      linhas.map((l, i) => ({ text: l, options: { breakLine: i < linhas.length - 1, bold: false } })),
+      { x: 0.3, y: 1.1, w: 9.4, h: 6.3, fontSize: fs, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle", lineSpacingMultiple: 1.3 }
+    );
+  }
+
+  function renderMus(musica) {
+    musica.secoes.forEach(s => {
+      const bold = s.tipo === "Refrão" || s.tipo === "Única";
+      addTexto(s.texto, bold);
+    });
+  }
+
+  const oeNum = opcoes.oracao_eucaristica || 1;
+  const misterioNum = opcoes.misterio_fe || 1;
+  const oe = oracoesEucaristicas[oeNum];
+
+  // CAPA
+  const capSlide = pres.addSlide();
+  capSlide.background = { color: "FFFFFF" };
+  capSlide.addText("11º Domingo do Tempo Comum — 14 de junho de 2026", { x: 1.0, y: 1.8, w: 8, h: 0.5, fontSize: 18, color: "888888", fontFace: FONTE, align: "center" });
+  capSlide.addText("11º Domingo\ndo Tempo Comum", { x: 1.0, y: 2.4, w: 8, h: 2.5, fontSize: 48, bold: true, color: COR_TEXTO, fontFace: FONTE, align: "center", valign: "middle" });
+
+  // OE IV — antes do Santo
+  if (oe.antesDoSanto.length > 0) { oe.antesDoSanto.forEach(r => addTexto(r, true)); addPreto(); }
+
+  // ENTRADA
+  const entrada = bancoUndecimo.cantos_entrada.find(c => c.titulo === opcoes.entrada);
+  if (entrada) renderMus(entrada);
+  addPreto();
+
+  // ATO PENITENCIAL (reutiliza banco do décimo)
+  if (opcoes.penitencial && bancoDecimo) {
+    const pen = bancoDecimo.penitencial.find(c => c.titulo === opcoes.penitencial);
+    if (pen) renderMus(pen);
+  }
+  addPreto();
+
+  // GLÓRIA (reutiliza banco do décimo)
+  if (opcoes.gloria && bancoDecimo) {
+    const gl = bancoDecimo.gloria.find(c => c.titulo === opcoes.gloria);
+    if (gl) renderMus(gl);
+  }
+  addPreto();
+
+  // LITURGIA DA PALAVRA
+  addFixo("I LEITURA:", slidesFixosUndecimo.primeiraLeitura);
+  addFixo("Salmo responsorial 99(100)", slidesFixosUndecimo.salmo);
+  addFixo("II LEITURA:", slidesFixosUndecimo.segundaLeitura);
+
+  // ACLAMAÇÃO
+  if (opcoes.aclamacao) {
+    const ac = bancoUndecimo.aclamacao.find(c => c.titulo === opcoes.aclamacao);
+    if (ac) renderMus(ac);
+  }
+
+  addFixo("EVANGELHO", slidesFixosUndecimo.evangelho);
+  addPreto();
+
+  // ORAÇÃO DOS FIÉIS
+  addFixo("Oração dos Fiéis", slidesFixosUndecimo.preces);
+  addPreto();
+
+  // OFERTÓRIO (reutiliza banco do décimo e sagrado coração)
+  if (opcoes.ofertorio) {
+    let of = bancoDecimo ? bancoDecimo.ofertorio.find(c => c.titulo === opcoes.ofertorio) : null;
+    if (!of && bancoSagradoCoracao) of = bancoSagradoCoracao.ofertorio.find(c => c.titulo === opcoes.ofertorio);
+    if (of) renderMus(of);
+  }
+  addPreto();
+
+  // SANTO
+  if (opcoes.santo && bancoTrindade && bancoTrindade.santo) {
+    const st = bancoTrindade.santo.find(c => c.titulo === opcoes.santo);
+    if (st) renderMus(st);
+  }
+  addPreto();
+
+  // OE — respostas após Santo
+  oe.aposDoSanto.forEach(r => addTexto(r, true));
+  addPreto();
+
+  // MISTÉRIO DA FÉ
+  addTexto(misteriosDaFe[misterioNum], true);
+  addPreto();
+
+  // Respostas após Mistério
+  oe.aposDoMisterio.forEach(r => addTexto(r, true));
+  addPreto();
+
+  // CORDEIRO
+  if (opcoes.cordeiro && bancoTrindade && bancoTrindade.cordeiro) {
+    const cord = bancoTrindade.cordeiro.find(c => c.titulo === opcoes.cordeiro);
+    if (cord) renderMus(cord);
+  }
+  addPreto();
+
+  // COMUNHÃO
+  if (opcoes.comunhao) {
+    const com = bancoUndecimo.comunhao.find(c => c.titulo === opcoes.comunhao);
+    if (com) renderMus(com);
+  }
+  addPreto();
+
+  // FINAL — busca no banco do décimo (1-6) ou no bancoUndecimo.final_extra (7-8)
+  if (opcoes.final) {
+    // Tentar banco do décimo primeiro
+    let fin = bancoDecimo ? bancoDecimo.final.find(c => c.titulo === opcoes.final) : null;
+    // Se não achou, buscar nos finais extras do undécimo
+    if (!fin) fin = bancoUndecimo.final_extra.find(c => c.titulo === opcoes.final);
+    if (fin) renderMus(fin);
+  }
+
+  return pres;
+}
+
+
+// =============================================
 // ROTAS DA API
 // =============================================
 
@@ -2488,8 +2812,11 @@ app.post("/gerar", async (req, res) => {
     const isTrindade = domingo && domingo.toLowerCase().includes('trindade');
     const isDecimo = domingo && domingo.toLowerCase().includes('decimo');
     const isSagrado = domingo && domingo.toLowerCase().includes('sagrado');
+    const isUndecimo = domingo && domingo.toLowerCase().includes('undecimo');
     let pres;
-    if (isSagrado) {
+    if (isUndecimo) {
+      pres = gerarMissaUndecimo(opcoes, null, null, null, null, null, null, bancoTrindade, oracoesEucaristicas, misteriosDaFe, bancoDecimo, bancoSagradoCoracao);
+    } else if (isSagrado) {
       pres = gerarMissaSagradoCoracao(opcoes, null, null, null, null, null, null, bancoTrindade, oracoesEucaristicas, misteriosDaFe);
     } else if (isDecimo) {
       pres = gerarMissaDecimo(opcoes, null, null, null, null, null, null, bancoTrindade);
